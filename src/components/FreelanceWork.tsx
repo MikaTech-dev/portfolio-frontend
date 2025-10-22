@@ -1,57 +1,20 @@
-import { ExternalLink, Palette, ShoppingCart, Briefcase, Heart, Globe } from 'lucide-react';
+import { ExternalLink, ShoppingCart } from 'lucide-react';
+import { useState } from 'react';
+import ContactForm from './ContactForm';
 
 const websites = [
   {
-    title: 'Luxury Fashion Boutique',
-    description: 'High-end e-commerce platform with immersive product galleries, virtual try-on, and seamless checkout experience.',
+    title: 'Naturecare - Store',
+    description: 'High-end e-commerce site with modern designs, SEO optimization, and a seamless checkout experience with paystack integration.',
     icon: ShoppingCart,
-    image: 'https://images.pexels.com/photos/1884584/pexels-photo-1884584.jpeg?auto=compress&cs=tinysrgb&w=800',
-    tech: ['React', 'Node.js', 'Stripe', 'MongoDB'],
+    image: 'https://naturecaresands.com.ng/wp-content/uploads/2025/10/nature-care-logo-photopea.png',
     category: 'E-Commerce',
-  },
-  {
-    title: 'Creative Agency Portfolio',
-    description: 'Award-winning agency website with interactive case studies, motion graphics, and client testimonial showcase.',
-    icon: Palette,
-    image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
-    tech: ['Next.js', 'Framer Motion', 'Sanity CMS'],
-    category: 'Portfolio',
-  },
-  {
-    title: 'FinTech SaaS Dashboard',
-    description: 'Enterprise financial platform with real-time analytics, data visualization, and compliance reporting tools.',
-    icon: Briefcase,
-    image: 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=800',
-    tech: ['Vue.js', 'D3.js', 'PostgreSQL', 'AWS'],
-    category: 'SaaS',
-  },
-  {
-    title: 'Wellness & Fitness Hub',
-    description: 'Comprehensive health platform with workout tracking, meal planning, progress analytics, and community features.',
-    icon: Heart,
-    image: 'https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=800',
-    tech: ['React Native', 'Firebase', 'Stripe', 'REST API'],
-    category: 'Lifestyle',
-  },
-  {
-    title: 'Real Estate Marketplace',
-    description: 'Property listing platform with advanced search, virtual tours, mortgage calculator, and CRM integration.',
-    icon: Globe,
-    image: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800',
-    tech: ['Angular', 'Django', 'PostgreSQL', 'Google Maps'],
-    category: 'Marketplace',
-  },
-  {
-    title: 'Restaurant Chain Website',
-    description: 'Multi-location restaurant site with online ordering, reservation system, and loyalty rewards program.',
-    icon: ShoppingCart,
-    image: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800',
-    tech: ['React', 'Express', 'MySQL', 'Twilio'],
-    category: 'Food & Beverage',
+    link: 'https://naturecaresands.com.ng',
   },
 ];
 
 export default function FreelanceWork() {
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   return (
     <section className="relative min-h-screen px-6 py-32">
       <div className="max-w-7xl mx-auto">
@@ -60,7 +23,7 @@ export default function FreelanceWork() {
             Freelance <span className="text-gradient">Work</span>
           </h2>
           <p className="text-xl text-frosted-silver max-w-2xl mx-auto">
-            Delivering stunning websites that drive results for clients worldwide
+            All the stunning websites I've built for all my clients worldwide
           </p>
         </div>
 
@@ -68,7 +31,10 @@ export default function FreelanceWork() {
           {websites.map((site, index) => {
             const Icon = site.icon;
             return (
-              <div
+              <a
+                href={site.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 key={index}
                 className="glass-card-hover rounded-3xl overflow-hidden group cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -99,20 +65,8 @@ export default function FreelanceWork() {
                   <p className="text-slate-300 leading-relaxed">
                     {site.description}
                   </p>
-
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {site.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 text-xs font-medium rounded-full bg-white/5 text-royal-purple border"
-                        style={{ borderColor: 'rgba(94,58,255,0.12)' }}
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>
@@ -125,15 +79,20 @@ export default function FreelanceWork() {
             <p className="text-slate-300 mb-6">
               Click the button below, fill and submit the form and I'll get back to you within 12 Hours :3
             </p>
-            <a
-              href="mailto:your.email@example.com"
-              className="inline-block glass-card-hover px-8 py-4 rounded-full text-lg font-medium text-purple-400 border-2 border-cyan-400/30"
+            <button
+              onClick={() => setIsContactFormOpen(true)}
+              className="inline-block glass-card-hover px-8 py-4 rounded-full text-lg font-medium text-royal-purple border-2 border-royal-purple/30"
             >
               Start a Conversation
-            </a>
+            </button>
           </div>
         </div>
       </div>
+
+      <ContactForm 
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
+      />
     </section>
   );
 }

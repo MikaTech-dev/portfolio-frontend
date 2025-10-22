@@ -39,7 +39,7 @@ export default function BackendProjects() {
             Backend <span className="text-gradient">Projects</span>
           </h2>
           <p className="text-xl text-frosted-silver max-w-2xl mx-auto">
-            Building robust, scalable systems that power modern applications
+            Projects I've worked on; APIs, automations, and other services built for performance and functiionality.
           </p>
         </div>
 
