@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: var(--bg);
+    color: var(--frosted-silver);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+:root {
+  /* Palette from .bolt/colour.config.json */
+  --color-royal-purple: #c084fc;
+  --color-electric-violet: #8C3BFF;
+  --color-neon-fuchsia-glow: #C94EFF;
+  --color-deep-midnight: #1C102E;
+  --color-metallic-slate: #2F2B3A;
+  --color-frosted-silver: #E3E0FF;
+
+  /* Useful semantic aliases */
+  --bg: var(--color-deep-midnight);
+  --primary: var(--color-royal-purple);
+  --secondary: var(--color-electric-violet);
+  --accent: var(--color-frosted-silver);
+  --neutral: var(--color-metallic-slate);
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(227, 224, 255, 0.03); /* subtle frosted silver tint */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-500;
+  }
+
+  .glass-card-hover:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .glass-nav {
+    background: rgba(28, 16, 46, 0.78); /* deepMidnight backdrop */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .text-gradient {
+    /* gradient using primary -> secondary -> neon accent */
+    background-image: linear-gradient(90deg, var(--color-royal-purple), var(--color-electric-violet), var(--color-neon-fuchsia-glow));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite 2s;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+}
