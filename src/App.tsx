@@ -46,8 +46,9 @@ function App() {
         <FreelanceWork />
       </div>
 
-      <footer className="relative z-10 py-8 text-center text-slate-400 text-sm">
-        <div className="glass-card max-w-2xl mx-auto py-6">
+      <footer className="relative z-10 text-center text-slate-400 text-sm">
+        <div className="glass-card mx-auto py-4">
+          Made with 💜 by Mikatech
           <p>© {new Date().getFullYear()} All rights reserved.</p>
         </div>
       </footer>

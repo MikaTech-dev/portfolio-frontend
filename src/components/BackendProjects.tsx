@@ -1,47 +1,32 @@
-import { Server, Database, Lock, Zap, Cloud, Code } from 'lucide-react';
+import { Code } from 'lucide-react';
 
 const projects = [
   {
-    title: 'Distributed Microservices Platform',
-    description: 'Built a scalable microservices architecture handling 10M+ daily requests with service mesh, event-driven communication, and automated failover.',
-    icon: Server,
-    tech: ['Node.js', 'Kubernetes', 'RabbitMQ', 'Redis', 'PostgreSQL'],
-    metrics: '10M+ requests/day, 99.99% uptime',
-  },
-  {
-    title: 'Real-time Analytics Pipeline',
-    description: 'Engineered high-throughput data processing system with real-time streaming, ETL pipelines, and custom aggregation engine.',
-    icon: Database,
-    tech: ['Python', 'Apache Kafka', 'ClickHouse', 'Airflow'],
-    metrics: '500K events/sec, sub-second latency',
-  },
-  {
-    title: 'Authentication & Authorization Service',
-    description: 'Developed enterprise-grade identity management system with OAuth2, SAML, MFA, and fine-grained RBAC.',
-    icon: Lock,
-    tech: ['Go', 'Redis', 'PostgreSQL', 'JWT'],
-    metrics: '1M+ active users, SOC 2 compliant',
-  },
-  {
-    title: 'GraphQL API Gateway',
-    description: 'Created unified API gateway with schema stitching, query optimization, and intelligent caching layer.',
-    icon: Zap,
-    tech: ['TypeScript', 'Apollo', 'DataLoader', 'Redis'],
-    metrics: '200ms avg response, 5K+ queries/sec',
-  },
-  {
-    title: 'Cloud Infrastructure Automation',
-    description: 'Designed IaC framework for multi-cloud deployment with auto-scaling, monitoring, and disaster recovery.',
-    icon: Cloud,
-    tech: ['Terraform', 'AWS', 'Docker', 'Prometheus'],
-    metrics: '40+ services, zero-downtime deploys',
-  },
-  {
-    title: 'Payment Processing Engine',
-    description: 'Built PCI-compliant payment system with multiple gateway integrations, fraud detection, and transaction reconciliation.',
+    title: 'Blog App',
+    description:
+      "A secure, full-featured blogging platform with user authentication, draft/publish controls, reading time estimation, and view tracking. Users can create, edit, and delete their own posts via a clean EJS-based frontend.",
     icon: Code,
-    tech: ['Java', 'Spring Boot', 'MySQL', 'Stripe API'],
-    metrics: '$10M+ processed, 99.9% success rate',
+    tech: ['Node.js', 'Express', 'MongoDB', 'EJS', 'JWT', 'REST API', 'CRUD', 'Authentication', 'CSS'],
+    metrics: 'Fast local response, simple CRUD flows, low latency for typical requests',
+    link: 'https://github.com/MikaTech-dev/blog-app',
+  },
+  {
+    title: 'Number Guessing Game',
+    description:
+      'An interactive browser-based game where players guess a randomly generated number within a limited number of attempts. Built with vanilla JavaScript for DOM manipulation and game logic, offering real-time feedback and replayability.',
+    icon: Code,
+    tech: ['HTML', 'CSS', 'JavaScript', 'DOM API', 'Frontend', 'Game Logic'],
+    metrics: 'Instant client-side feedback, lightweight assets, fast load times',
+    link: 'https://github.com/MikaTech-dev/number-guessing-game-js',
+  },
+  {
+    title: 'Birthday Reminder App',
+    description:
+      'An automated email system that sends personalized birthday wishes at 7 AM daily. Features a simple UI to manage contacts, tracks sent emails to avoid duplicates, and uses a cron job to trigger daily checks.',
+    icon: Code,
+    tech: ['Node.js', 'Express', 'MongoDB', 'Gmail API', 'Nodemailer', 'Cron Jobs', 'REST API', 'dotenv'],
+    metrics: 'Daily scheduled jobs, reliable delivery via SMTP, idempotent sends to avoid duplicates',
+    link: 'https://github.com/MikaTech-dev/birthday-reminder-app',
   },
 ];
 
@@ -62,9 +47,12 @@ export default function BackendProjects() {
           {projects.map((project, index) => {
             const Icon = project.icon;
             return (
-              <div
+              <a
                 key={index}
-                className="glass-card-hover rounded-2xl p-8 group cursor-pointer"
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block glass-card-hover rounded-2xl p-8 group cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="mb-6 relative">
@@ -101,7 +89,7 @@ export default function BackendProjects() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>
