@@ -1,5 +1,6 @@
-import { X } from 'lucide-react';
+import { X, Loader2 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import { submitContactForm } from '../services/api';
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -15,6 +16,8 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
   });
   const modalRef = useRef<HTMLDivElement>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -49,13 +52,21 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
+
     if (validateForm()) {
-      // Here you would typically send the form data to your backend
-      console.log('Form submitted:', formData);
-      onClose();
-      setFormData({ name: '', email: '', phone: '', message: '' });
+      setIsSubmitting(true);
+      try {
+        await submitContactForm(formData);
+        setFormData({ name: '', email: '', phone: '', message: '' });
+        onClose();
+      } catch (error) {
+        setSubmitError('Failed to send message. Please try again later.');
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -144,10 +155,23 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
 
           <button
             type="submit"
-            className="w-full glass-card-hover px-6 py-3 rounded-lg text-lg font-medium text-royal-purple border-2 border-royal-purple/30 hover:border-royal-purple/50 transition-colors"
+            disabled={isSubmitting}
+            className={`w-full glass-card-hover px-6 py-3 rounded-lg text-lg font-medium text-royal-purple border-2 
+              ${isSubmitting ? 'opacity-75 cursor-not-allowed' : 'border-royal-purple/30 hover:border-royal-purple/50'} 
+              transition-colors flex items-center justify-center gap-2`}
           >
-            Send Message
+            {isSubmitting ? (
+              <>
+                <Loader2 size={20} className="animate-spin" />
+                Sending...
+              </>
+            ) : (
+              'Send Message'
+            )}
           </button>
+          {submitError && (
+            <p className="text-red-400 text-sm text-center mt-4">{submitError}</p>
+          )}
         </form>
       </div>
     </div>
