@@ -56,10 +56,10 @@ export default function Hero() {
             </div>
 
             <div className="glass-card rounded-2xl p-6 space-y-3">
-              <h3 className="text-electric-violet font-semibold text-lg">About Me</h3>
-              <p className="text-slate-300 leading-relaxed">
-                So far with a year of experience building backend systems and delivering
-                pixel-perfect websites that convert. One of many of my goals is to bridge the gap between 
+              <h3 className="text-electric-violet font-semibold text-2xl">About Me</h3>
+              <p className="text-slate-300 leading-relaxed text-xl">
+                So far with over a 2 years of experience building backend systems and delivering
+                pixel-perfect websites that actually convert. One of many of my goals is to bridge the gap between 
                 technological applications and creative vision all while maintaining affordability and accessibility 
                 in markets that otherwise aren't. 
                 My approach combines system design thinking and efficiency with attention to detail,
