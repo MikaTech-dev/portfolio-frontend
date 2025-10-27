@@ -4,6 +4,7 @@ import BackendProjects from './components/BackendProjects';
 import FreelanceWork from './components/FreelanceWork';
 import Navigation from './components/Navigation';
 import FloatingShapes from './components/FloatingShapes';
+import StatusIndicator from './components/StatusIndicator';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -33,6 +34,7 @@ function App() {
     <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-x-hidden">
       <FloatingShapes />
       <Navigation activeSection={activeSection} />
+      <StatusIndicator />
 
       <div id="hero">
         <Hero />
