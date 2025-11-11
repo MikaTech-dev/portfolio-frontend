@@ -1,11 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   body {
     background-color: var(--bg);
-    color: var(--frosted-silver);
+    color: #E3E0FF;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -49,8 +47,15 @@
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   }
 
+  /* Avoid using @apply with a custom class name — Tailwind expects @apply to use utility
+     classes. Replicate the glass-card styles here and add transition rules. */
   .glass-card-hover {
-    @apply glass-card transition-all duration-500;
+    background: rgba(227, 224, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: all 0.5s;
   }
 
   .glass-card-hover:hover {

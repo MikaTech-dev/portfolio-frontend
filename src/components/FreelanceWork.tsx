@@ -11,6 +11,14 @@ const websites = [
     category: 'E-Commerce',
     link: 'https://naturecaresands.com.ng',
   },
+  {
+    title: 'Case Properties - Blog',
+    description: 'Designing to build a monetized blog/community website for Case Properties with Google Adsense integration, community feedback (comments), social media funnels and eventually a merch store.',
+    icon: ShoppingCart,
+    image: '',
+    category: 'E-Commerce',
+    link: 'https://frantic-case.vercel.app',
+  },
 ];
 
 export default function FreelanceWork() {
