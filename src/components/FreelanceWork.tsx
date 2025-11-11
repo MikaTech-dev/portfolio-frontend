@@ -1,6 +1,7 @@
 import { ExternalLink, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
 import ContactForm from './ContactForm';
+import caseImage from '../public/CASE PROPERTIES LOGO.jpg'
 
 const websites = [
   {
@@ -15,7 +16,7 @@ const websites = [
     title: 'Case Properties - Blog',
     description: 'Designing to build a monetized blog/community website for Case Properties with Google Adsense integration, community feedback (comments), social media funnels and eventually a merch store.',
     icon: ShoppingCart,
-    image: '',
+    image: caseImage,
     category: 'E-Commerce',
     link: 'https://frantic-case.vercel.app',
   },
