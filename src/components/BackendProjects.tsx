@@ -2,6 +2,15 @@ import { Code } from 'lucide-react';
 
 const projects = [
   {
+    title: 'Portfolio Site',
+    description:
+      'A modern, responsive portfolio website showcasing projects and skills. Built with React and TypeScript, featuring smooth animations, a glassmorphism based design, optimized for performance via Vite.',
+    icon: Code,
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Responsive Design', 'Modern UI'],
+    metrics: 'Fast load times, mobile-optimized, smooth animations, SEO-friendly',
+    link: 'https://github.com/MikaTech-dev/portfolio-frontend',
+  },
+  {
     title: 'Blog App',
     description:
       "A secure, full-featured blogging platform with user authentication, draft/publish controls, reading time estimation, and view tracking. Users can create, edit, and delete their own posts via a clean EJS-based frontend.",
@@ -36,10 +45,10 @@ export default function BackendProjects() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20 space-y-4">
           <h2 className="text-5xl md:text-6xl font-bold text-white">
-            Backend <span className="text-gradient">Projects</span>
+            Personal/Community <span className="text-gradient">Projects</span>
           </h2>
           <p className="text-xl text-frosted-silver max-w-2xl mx-auto">
-            Projects I've worked on; APIs, automations, and other services built for performance and functiionality.
+            Projects I've worked on; Sites, APIs, automations, and other services built for performance and functiionality.
           </p>
         </div>
 
