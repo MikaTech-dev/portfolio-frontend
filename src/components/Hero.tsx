@@ -16,7 +16,7 @@ export default function Hero() {
             <div className="space-y-4">
               <div className="text-electric-violet text-xl font-semibold mb-2">Hi, I'm</div>
               <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
-                Sam Lebechukwu Ikenna
+                Sam-Lebechukwu Ikenna
               </h1>
               <h2 className="text-3xl md:text-4xl font-bold text-gradient">
                 Backend Engineer & Freelance Developer
