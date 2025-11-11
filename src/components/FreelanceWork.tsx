@@ -1,6 +1,7 @@
 import { ExternalLink, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
 import ContactForm from './ContactForm';
+import caseImage from '../public/CASE PROPERTIES LOGO.jpg'
 
 const websites = [
   {
@@ -10,6 +11,14 @@ const websites = [
     image: 'https://naturecaresands.com.ng/wp-content/uploads/2025/10/nature-care-logo-photopea.png',
     category: 'E-Commerce',
     link: 'https://naturecaresands.com.ng',
+  },
+  {
+    title: 'Case Properties - Blog',
+    description: 'Designing to build a monetized blog/community website for Case Properties with Google Adsense integration, community feedback (comments), social media funnels and eventually a merch store.',
+    icon: ShoppingCart,
+    image: caseImage,
+    category: 'E-Commerce',
+    link: 'https://frantic-case.vercel.app',
   },
 ];
 

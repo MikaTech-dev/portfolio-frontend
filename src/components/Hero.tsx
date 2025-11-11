@@ -10,7 +10,7 @@ export default function Hero() {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20">
-      <div className="max-w-6xl mx-auto w-full flex-grow">
+      <div className="max-w-6xl my-15 mx-auto w-full flex-grow">
         <div className="grid md:grid-cols-1 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4">
@@ -57,7 +57,7 @@ export default function Hero() {
 
             <div className="glass-card rounded-2xl p-6 space-y-3">
               <h3 className="text-electric-violet font-semibold text-2xl">About Me</h3>
-              <p className="text-slate-300 leading-relaxed text-xl">
+              <p className="text-slate-300 leading-relaxed text-lg">
                 So far, with over 2 years of experience building backend systems and delivering
                 pixel-perfect websites that actually convert. One of many of my goals is to bridge the gap between 
                 technological applications and creative vision, all while maintaining affordability and accessibility 

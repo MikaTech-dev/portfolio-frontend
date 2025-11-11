@@ -28,7 +28,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
         <div className="flex justify-between items-center">
           <button
             onClick={() => scrollToSection('hero')}
-            className="text-2xl font-bold text-gradient hover:scale-105 transition-transform"
+            className="text-2xl font-bold text-gradient hover:scale-105 transition-transform cursor-pointer"
           >
             Mikatech.dev
           </button>
@@ -38,7 +38,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`text-sm font-medium transition-all duration-300 hover:text-purple-400 ${
+                className={`text-sm font-medium transition-all duration-300 hover:text-purple-400 cursor-pointer ${
                   activeSection === item.id
                     ? 'text-electric-violet scale-110'
                     : 'text-frosted-silver'
