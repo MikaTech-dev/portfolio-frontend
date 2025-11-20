@@ -80,8 +80,8 @@ export default function BackendProjects() {
               <motion.a
                 key={index}
                 variants={itemVariants}
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ y: -20 }}
+                transition={{ duration: 0.1, ease: easeIn }}
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
