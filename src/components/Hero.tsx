@@ -1,6 +1,11 @@
 import { Github, Mail, ArrowDown, Twitter } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function Hero() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '0px 0px -100px 0px' });
+
   const scrollToNext = () => {
     const element = document.getElementById('backend');
     if (element) {
@@ -9,10 +14,21 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20">
+    <motion.section
+      ref={sectionRef}
+      className="min-h-screen flex flex-col items-center justify-center px-6 py-20"
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ duration: 1.2 }}
+    >
       <div className="max-w-6xl my-15 mx-auto w-full flex-grow">
         <div className="grid md:grid-cols-1 gap-12 items-center">
-          <div className="space-y-8 animate-fade-in-up">
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className="space-y-4">
               <div className="text-electric-violet text-xl font-semibold mb-2">Hi, I'm</div>
               <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
@@ -66,7 +82,7 @@ export default function Hero() {
                 ensuring every project is both powerful and polished.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       <button
@@ -75,6 +91,6 @@ export default function Hero() {
       >
         <ArrowDown size={32} />
       </button>
-    </section>
+    </motion.section>
   );
 }
