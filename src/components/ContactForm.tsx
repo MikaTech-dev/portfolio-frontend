@@ -1,5 +1,6 @@
 import { X, Loader2 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { submitContactForm } from '../services/api';
 
 interface ContactFormProps {
@@ -73,10 +74,17 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-deep-midnight/80 backdrop-blur-sm z-50 flex items-center justify-center animate-fade-in">
-      <div
+    <motion.div className="fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.12 }}
+    >
+      <motion.div
         ref={modalRef}
-        className="w-full max-w-lg mx-4 glass-card rounded-2xl p-8 animate-fade-in-up"
+        className="w-full max-w-lg mx-4 glass-card rounded-2xl p-8"
+        initial={{ opacity: 0, y: 18, backgroundColor: 'rgba(227,224,255,0.03)' }}
+        animate={{ opacity: 1, y: 0, backgroundColor: 'rgba(201,78,255,0.08)' }}
+        transition={{ duration: 0.18 }}
       >
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-2xl font-bold text-white">Contact Me</h3>
@@ -158,7 +166,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
             disabled={isSubmitting}
             className={`w-full glass-card-hover px-6 py-3 rounded-lg text-lg font-medium text-royal-purple border-2 
               ${isSubmitting ? 'opacity-75 cursor-not-allowed' : 'border-royal-purple/30 hover:border-royal-purple/50'} 
-              transition-colors flex items-center justify-center gap-2`}
+              transition-colors flex items-center justify-center gap-2 cursor-pointer`}
           >
             {isSubmitting ? (
               <>
@@ -173,7 +181,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
             <p className="text-red-400 text-sm text-center mt-4">{submitError}</p>
           )}
         </form>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
