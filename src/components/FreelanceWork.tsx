@@ -1,5 +1,6 @@
 import { ExternalLink, ShoppingCart, NotebookPen } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { easeIn, easeInOut, motion, useInView } from 'framer-motion';
 import ContactForm from './ContactForm';
 import caseImage from '../public/CASE PROPERTIES LOGO.jpg'
 
@@ -24,8 +25,27 @@ const websites = [
 
 export default function FreelanceWork() {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '0px 0px -100px 0px' });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.4, delayChildren: 0, ease: easeIn } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 0 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.2, 0, 0, 1] as const } },
+  };
+
   return (
-    <section className="relative min-h-screen px-6 py-32">
+    <motion.section
+      ref={sectionRef}
+      className="relative min-h-screen px-6 py-32"
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      variants={containerVariants}
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20 space-y-4">
           <h2 className="text-5xl md:text-6xl font-bold text-white">
@@ -36,15 +56,18 @@ export default function FreelanceWork() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <motion.div className="grid md:grid-cols-2 gap-8" variants={containerVariants}>
           {websites.map((site, index) => {
             const Icon = site.icon;
             return (
-              <a
+              <motion.a
                 href={site.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 key={index}
+                variants={itemVariants}
+                whileHover={{ y: -3 }}
+                transition={{ duration: 0.1, ease: easeInOut }}
                 className="glass-card-hover rounded-3xl overflow-hidden group cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
@@ -75,22 +98,22 @@ export default function FreelanceWork() {
                     {site.description}
                   </p>
                 </div>
-              </a>
+              </motion.a>
             );
           })}
-        </div>
+        </motion.div>
 
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center" id="contact-card">
           <div className="glass-card rounded-2xl p-8 max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold text-white mb-4">
-              Want to contact me directly?
+              Want to contact me?
             </h3>
             <p className="text-slate-300 mb-6">
               Click the button below, fill and submit the form and I'll get back to you within 12 Hours :3
             </p>
             <button
               onClick={() => setIsContactFormOpen(true)}
-              className="inline-block glass-card-hover px-8 py-4 rounded-full text-lg font-medium text-royal-purple border-2 border-royal-purple/30"
+              className="inline-block glass-card-hover px-8 py-4 rounded-full text-lg font-medium text-royal-purple border-2 border-royal-purple/30 cursor-pointer"
             >
               Start a Conversation
             </button>
@@ -102,6 +125,6 @@ export default function FreelanceWork() {
         isOpen={isContactFormOpen}
         onClose={() => setIsContactFormOpen(false)}
       />
-    </section>
+    </motion.section>
   );
 }

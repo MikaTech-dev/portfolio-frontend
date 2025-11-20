@@ -1,4 +1,6 @@
 import { Code } from 'lucide-react';
+import { motion, useInView, easeIn } from 'framer-motion';
+import { useRef } from 'react';
 
 const projects = [
   {
@@ -40,8 +42,27 @@ const projects = [
 ];
 
 export default function BackendProjects() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '0px 0px -100px 0px' });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0, ease: easeIn } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 0 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.2, 0, 0, 1] as const } },
+  };
+
   return (
-    <section className="relative min-h-screen px-6 py-32">
+    <motion.section
+      ref={sectionRef}
+      className="relative min-h-screen px-6 py-32"
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      variants={containerVariants}
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20 space-y-4">
           <h2 className="text-5xl md:text-6xl font-bold text-white">
@@ -52,12 +73,15 @@ export default function BackendProjects() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" variants={containerVariants}>
           {projects.map((project, index) => {
             const Icon = project.icon;
             return (
-              <a
+              <motion.a
                 key={index}
+                variants={itemVariants}
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.3 }}
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -98,11 +122,11 @@ export default function BackendProjects() {
                     </p>
                   </div>
                 </div>
-              </a>
+              </motion.a>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
