@@ -84,7 +84,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
         className="w-full max-w-lg mx-4 glass-card rounded-2xl p-8"
         initial={{ opacity: 0, y: 18, backgroundColor: 'rgba(227,224,255,0.03)' }}
         animate={{ opacity: 1, y: 0, backgroundColor: 'rgba(201,78,255,0.08)' }}
-        transition={{ duration: 0.18 }}
+        transition={{ duration: 0.5, ease: [0.3,0.09,0,1] }}
       >
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-2xl font-bold text-white">Contact Me</h3>
