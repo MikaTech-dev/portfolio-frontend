@@ -1,15 +1,5 @@
 @import "tailwindcss";
 
-@layer base {
-  body {
-    background-color: var(--bg);
-    color: #E3E0FF;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-  }
-}
-
 :root {
   /* Palette from .bolt/colour.config.json */
   --color-royal-purple: #c084fc;
@@ -25,6 +15,16 @@
   --secondary: var(--color-electric-violet);
   --accent: var(--color-frosted-silver);
   --neutral: var(--color-metallic-slate);
+}
+
+@layer base {
+  body {
+    background-color: var(--bg);
+    color: #E3E0FF;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
 }
 
 @layer utilities {
@@ -138,3 +138,15 @@
     animation: pulse-glow 4s ease-in-out infinite;
   }
 }
+
+.btn-glow {
+    background-color: var(--color-royal-purple);
+    color: white;
+    transition: all 0.3s ease-out;
+  }
+
+  .btn-glow:hover {
+    background-color: var(--color-electric-violet);
+    transform: scale(1.05);
+    box-shadow: 0 0 40px -10px rgba(192, 132, 252, 0.5);
+  }
