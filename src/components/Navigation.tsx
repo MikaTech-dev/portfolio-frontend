@@ -26,9 +26,9 @@ export default function Navigation({ activeSection }: NavigationProps) {
   };
 
   const navItems = [
-    { id: 'hero', label: 'About' },
-    { id: 'backend', label: 'Personal Projects' },
-    { id: 'freelance', label: 'Freelance Work' },
+    { id: 'hero', label: 'About me' },
+    { id: 'backend', label: 'Projects' },
+    { id: 'freelance', label: 'Freelance stuff' },
     { id: 'contact', label: 'Contact me' },
   ];
 
