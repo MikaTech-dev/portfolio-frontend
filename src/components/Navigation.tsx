@@ -1,4 +1,5 @@
-import { Menu } from 'lucide-react';
+Navigation
+import { Menu, User, Code, Briefcase, Mail } from 'lucide-react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -13,7 +14,6 @@ export default function Navigation({ activeSection }: NavigationProps) {
     let element: Element | null = null;
     
     if (sectionId === 'contact') {
-      // For contact, scroll to the contact card which is more specific
       element = document.getElementById('contact-card');
     } else {
       element = document.getElementById(sectionId);
@@ -26,13 +26,13 @@ export default function Navigation({ activeSection }: NavigationProps) {
   };
 
   const navItems = [
-    { id: 'hero', label: 'About me' },
-    { id: 'backend', label: 'Projects' },
-    { id: 'freelance', label: 'Freelance stuff' },
-    { id: 'contact', label: 'Contact me' },
+    { id: 'hero', label: 'About me', icon: User },
+    { id: 'backend', label: 'Projects', icon: Code },
+    { id: 'freelance', label: 'Freelance stuff', icon: Briefcase },
+    { id: 'contact', label: 'Contact me', icon: Mail },
   ];
 
-  const customEase = [0.2, 0, 0, 1] as const
+  const customEase = [0.2, 0, 0, 1] as const;
   const navVariants = {
     hidden: { y: -30, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { duration: 0.35, ease: customEase } },
@@ -49,7 +49,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
         <div className="flex justify-between items-center">
           <button
             onClick={() => scrollToSection('hero')}
-            className="text-2xl font-bold text-gradient hover:scale-105 transition-transform cursor-pointer"
+            className="text-2xl font-bold font-grained hover:scale-105 transition-transform cursor-pointer"
           >
             Mikatech.dev
           </button>
@@ -59,12 +59,13 @@ export default function Navigation({ activeSection }: NavigationProps) {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`text-sm font-medium transition-all duration-300 hover:text-purple-400 cursor-pointer ${
+                className={`text-sm font-medium transition-all duration-300 hover:text-purple-400 cursor-pointer flex items-center gap-2 ${
                   activeSection === item.id
                     ? 'text-electric-violet scale-110'
                     : 'text-frosted-silver'
                 }`}
               >
+                <item.icon size={16} />
                 {item.label}
               </button>
             ))}
@@ -84,12 +85,13 @@ export default function Navigation({ activeSection }: NavigationProps) {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left py-3 px-4 rounded-lg transition-all ${
+                className={`w-full text-left py-3 px-4 rounded-lg transition-all flex items-center gap-3 ${
                   activeSection === item.id
                     ? 'text-electric-violet bg-white/10'
                     : 'text-frosted-silver hover:bg-white/5'
                 }`}
               >
+                <item.icon size={18} />
                 {item.label}
               </button>
             ))}

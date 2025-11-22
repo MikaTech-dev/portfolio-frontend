@@ -140,7 +140,6 @@
 }
 
 .btn-glow {
-    background-color: var(--color-royal-purple);
     color: white;
     transition: all 0.3s ease-out;
   }
