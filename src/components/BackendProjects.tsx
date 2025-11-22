@@ -52,7 +52,7 @@ export default function BackendProjects() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.2, 0, 0, 1] } },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.2, 0, 0, 1] } as const },
   };
 
   return (
