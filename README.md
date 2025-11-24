@@ -1,3 +1,3 @@
 # portfolio-frontend
-Personal Porfolio containing links to all my projects etc etc
+Personal Porfolio containing links to all my projects etc etc  
 Hosted on vercel
