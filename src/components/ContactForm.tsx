@@ -220,7 +220,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                       <button
                         type="submit"
                         disabled={status === 'submitting'}
-                        className="w-full py-4 rounded-xl font-bold text-lg text-white bg-gradient-to-r from-royal-purple to-electric-violet hover:to-neon-fuchsia-glow shadow-lg shadow-royal-purple/25 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 group mt-2 cursor-pointer"
+                        className="w-full py-4 rounded-xl font-bold text-lg text-white bg-gradient-to-r from-royal-purple to-electric-violet btn-glow shadow-lg shadow-royal-purple/25 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 group mt-2 cursor-pointer"
                       >
                         {status === 'submitting' ? (
                           <>
