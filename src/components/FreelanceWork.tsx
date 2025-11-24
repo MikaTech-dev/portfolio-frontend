@@ -1,25 +1,29 @@
-import { ExternalLink, ShoppingCart, NotebookPen } from 'lucide-react';
+import { ExternalLink, ShoppingCart, NotebookPen, Sparkles, ArrowRight } from 'lucide-react';
 import { useState, useRef } from 'react';
-import { easeIn, easeInOut, motion, useInView } from 'framer-motion';
+import { easeIn, motion, useInView } from 'framer-motion';
 import ContactForm from './ContactForm';
 import caseImage from '../assets/CASE PROPERTIES LOGO.jpg'
 
 const websites = [
   {
     title: 'Naturecare - Store',
-    description: 'High-end e-commerce site with modern designs, SEO optimization, and a seamless checkout experience with paystack integration.',
+    description: 'High-end e-commerce experience featuring seamless Paystack payments and modern SEO optimization.',
     icon: ShoppingCart,
     image: 'https://naturecaresands.com.ng/wp-content/uploads/2025/10/nature-care-logo-photopea.png',
     category: 'E-Commerce',
     link: 'https://naturecaresands.com.ng',
+    color: 'from-emerald-500/20 to-emerald-900/20',
+    accent: 'text-emerald-400'
   },
   {
     title: 'Case Properties - Blog',
-    description: 'Designing to build a monetized blog/community website for Case Properties with Google Adsense integration, community feedback (comments), social media funnels and later a merch store.',
+    description: 'A monetized community platform with Google Adsense, social funnels, and interactive user feedback systems.',
     icon: NotebookPen,
     image: caseImage,
-    category: 'Blog',
+    category: 'Blog & Community',
     link: 'https://frantic-case.vercel.app',
+    color: 'from-orange-500/20 to-orange-900/20',
+    accent: 'text-orange-400'
   },
 ];
 
@@ -30,12 +34,12 @@ export default function FreelanceWork() {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.4, delayChildren: 0, ease: easeIn } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.3, ease: easeIn } },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 0 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.2, 0, 0, 1] as const } },
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.2, 0, 0, 1] } } as const,
   };
 
   return (
@@ -47,16 +51,16 @@ export default function FreelanceWork() {
       variants={containerVariants}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20 space-y-4">
+        <div className="text-center mb-24 space-y-4">
           <h2 className="text-5xl md:text-6xl font-bold text-white">
             Freelance <span className="text-gradient">Work</span>
           </h2>
           <p className="text-xl text-frosted-silver max-w-2xl mx-auto">
-            All the stunning websites I've built for all my clients worldwide
+            Selected works delivering high-performance web solutions
           </p>
         </div>
 
-        <motion.div className="grid md:grid-cols-2 gap-8" variants={containerVariants}>
+        <div className="grid lg:grid-cols-2 gap-10 mb-32">
           {websites.map((site, index) => {
             const Icon = site.icon;
             return (
@@ -65,60 +69,88 @@ export default function FreelanceWork() {
                 target="_blank"
                 rel="noopener noreferrer"
                 key={index}
-                variants={itemVariants}
-                whileHover={{ y: -3 }}
-                transition={{ duration: 0.1, ease: easeInOut }}
-                className="glass-card-hover rounded-3xl overflow-hidden group cursor-pointer"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                variants={cardVariants}
+                className="group relative h-[500px] w-full rounded-[2.5rem] overflow-hidden border border-white/10 bg-deep-midnight cursor-pointer"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="absolute inset-0 w-full h-full">
                   <img
                     src={site.image}
                     alt={site.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
                   />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(28,16,46,1), rgba(28,16,46,0.5), rgba(28,16,46,0))' }} />
+                  <div className={`absolute inset-0 bg-gradient-to-b ${site.color} mix-blend-overlay opacity-60`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1C102E] via-[#1C102E]/80 to-transparent opacity-90" />
+                </div>
 
-                  <div className="absolute top-4 right-4 glass-card px-4 py-2 rounded-full flex items-center gap-2">
-                    <Icon size={16} className="text-royal-purple" />
-                    <span className="text-sm text-frosted-silver font-medium">{site.category}</span>
+                <div className="absolute top-6 left-6 right-6 flex justify-between items-start z-20">
+                  <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 border border-white/5 backdrop-blur-xl">
+                    <Icon size={14} className={site.accent} />
+                    <span className="text-xs font-bold text-white uppercase tracking-wider">{site.category}</span>
                   </div>
 
-                  <div className="absolute top-4 left-4 glass-card w-12 h-12 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <ExternalLink size={20} className="text-royal-purple" />
+                  <div className="w-12 h-12 rounded-full glass-card flex items-center justify-center border border-white/5 group-hover:text-deep-midnight transition-all duration-300">
+                    <ExternalLink size={20} className="transition-transform group-hover:rotate-45" />
                   </div>
                 </div>
 
-                <div className="p-8 space-y-4">
-                  <h3 className="text-2xl font-bold text-white group-hover:text-royal-purple transition-colors">
-                    {site.title}
-                  </h3>
-
-                  <p className="text-slate-300 leading-relaxed">
-                    {site.description}
-                  </p>
+                <div className="absolute bottom-0 left-0 right-0 p-8 z-20 translate-y-2 transition-transform duration-500 group-hover:translate-y-0">
+                  <div className="glass-card p-6 rounded-3xl border border-white/5 bg-black/20 backdrop-blur-md">
+                    <h3 className="text-3xl font-bold text-white mb-3 flex items-center gap-3">
+                      {site.title}
+                    </h3>
+                    <p className="text-frosted-silver text-lg leading-relaxed opacity-90">
+                      {site.description}
+                    </p>
+                    <div className="mt-4 flex items-center gap-2 text-sm font-bold text-electric-violet opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+                      <span>Visit Website</span>
+                      <ArrowRight size={16} />
+                    </div>
+                  </div>
                 </div>
               </motion.a>
             );
           })}
-        </motion.div>
-
-        <div className="mt-16 text-center" id="contact-card">
-          <div className="glass-card rounded-2xl p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Want to contact me?
-            </h3>
-            <p className="text-slate-300 mb-6">
-              Click the button below, fill and submit the form and I'll get back to you within 12 Hours :3
-            </p>
-            <button
-              onClick={() => setIsContactFormOpen(true)}
-              className="inline-block glass-card-hover px-8 py-4 rounded-full text-lg font-medium text-royal-purple border-2 border-royal-purple/30 cursor-pointer"
-            >
-              Start a Conversation
-            </button>
-          </div>
         </div>
+
+        <motion.div 
+          className="mt-16 relative" 
+          id="contact-card"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.2, 0, 0, 1] }}
+        >
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-electric-violet/20 blur-[120px] rounded-full pointer-events-none" />
+          
+          <div className="relative glass-card rounded-[2.5rem] p-12 md:p-16 overflow-hidden border border-white/10">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-royal-purple/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-neon-fuchsia-glow/10 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col items-center text-center space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-4">
+                <Sparkles size={16} className="text-electric-violet" />
+                <span className="text-sm font-medium text-frosted-silver tracking-wide uppercase">Open for Commissions</span>
+              </div>
+
+              <h3 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+                Wanna talk <br />
+                <span className="text-electric-violet">business?</span>
+              </h3>
+              
+              <p className="text-frosted-silver text-xl max-w-xl mx-auto leading-relaxed opacity-90">
+                Click the button below, fill out the form, and I'll get back to you within 12 hours :3
+              </p>
+
+              <button
+                onClick={() => setIsContactFormOpen(true)}
+                className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full border-2 border-royal-purple/30 font-bold text-lg btn-glow cursor-pointer"
+              >
+                <span>Start a Conversation</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       <ContactForm 
