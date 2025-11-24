@@ -2,7 +2,7 @@ import { ExternalLink, ShoppingCart, NotebookPen, Sparkles, ArrowRight } from 'l
 import { useState, useRef } from 'react';
 import { easeIn, motion, useInView } from 'framer-motion';
 import ContactForm from './ContactForm';
-import caseImage from '../assets/CASE PROPERTIES LOGO.jpg';
+import caseImage from '../assets/CASE PROPERTIES LOGO.jpg'
 
 const websites = [
   {
