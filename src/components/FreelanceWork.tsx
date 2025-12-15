@@ -113,7 +113,7 @@ export default function FreelanceWork() {
         </div>
 
         <motion.div 
-          className="mt-16 relative" 
+          className="mt-50 relative" 
           id="contact-card"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
