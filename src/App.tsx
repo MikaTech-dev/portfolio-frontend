@@ -5,6 +5,7 @@ import FreelanceWork from './components/FreelanceWork';
 import Navigation from './components/Navigation';
 import FloatingShapes from './components/FloatingShapes';
 import StatusIndicator from './components/StatusIndicator';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -54,6 +55,7 @@ function App() {
           <p>© {new Date().getFullYear()} All rights reserved.</p>
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 }
