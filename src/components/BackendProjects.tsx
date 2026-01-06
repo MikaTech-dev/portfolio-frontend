@@ -54,7 +54,7 @@ const projects = [
       'A mini assessment engine/API made with DjangoRestFramework that allows students/users to take exams, and receive instant grading coupled with granular and insightful feedback with AI integration',
     icon: Book,
     tech: ['Python', 'Django', 'DjangoRestFramework', 'Pylint', 'AI', 'Google Gemini', "SQL", "Swagger", "Postman"],
-    metrics: "AI Feedback latency of <3s, User isolated data, Open API documentation",
+    metrics: "<3s AI Feedback latency, Open API documentation",
     link: 'https://github.com/MikaTech-dev/mini-assessment-engine',
   }
 ];
