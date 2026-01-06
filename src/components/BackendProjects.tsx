@@ -1,4 +1,4 @@
-import { Globe, FileText, Gamepad2, Gift, ArrowUpRight, Cpu, Zap, Users } from 'lucide-react';
+import { Globe, FileText, Gamepad2, Gift, ArrowUpRight, Cpu, Zap, Users, Book } from 'lucide-react';
 import { motion, useInView, easeIn } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -48,6 +48,15 @@ const projects = [
     metrics: 'Role-Based Auth',
     link: 'https://github.com/Edupeerhub/edupeerhub-server',
   },
+  {
+    title: 'Mini Assessment Engine',
+    description:
+      'A mini assessment engine/API made with DjangoRestFramework that allows students/users to take exams, and receive instant grading coupled with granular and insightful feedback with AI integration',
+    icon: Book,
+    tech: ['Python', 'Django', 'DjangoRestFramework', 'Pylint', 'AI', 'Google Gemini', "SQL", "Swagger", "Postman"],
+    metrics: "<3s AI Feedback latency, Open API documentation",
+    link: 'https://github.com/MikaTech-dev/mini-assessment-engine',
+  }
 ];
 
 export default function BackendProjects() {
