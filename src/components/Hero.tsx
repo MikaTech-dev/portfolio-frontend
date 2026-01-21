@@ -51,14 +51,6 @@ export default function Hero() {
         initial="hidden"
         animate="visible"
       >
-        <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-md">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-          </span>
-          <span className="text-sm font-medium text-frosted-silver tracking-wide">Online & Available</span>
-        </motion.div>
-
         <motion.div variants={itemVariants} className="space-y-2 mb-8">
           <h2 className="text-xl md:text-2xl text-electric-violet font-medium">
             Hi, I'm

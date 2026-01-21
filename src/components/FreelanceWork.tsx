@@ -1,20 +1,10 @@
-import { ExternalLink, ShoppingCart, NotebookPen, Sparkles, ArrowRight } from 'lucide-react';
+import { ExternalLink, NotebookPen, Sparkles, ArrowRight } from 'lucide-react';
 import { useState, useRef } from 'react';
 import { easeIn, motion, useInView } from 'framer-motion';
 import ContactForm from './ContactForm';
 import caseImage from '../assets/CASE PROPERTIES LOGO.jpg'
 
 const websites = [
-  {
-    title: 'Naturecare - Store',
-    description: 'High-end e-commerce experience featuring seamless Paystack payments and modern SEO optimization.',
-    icon: ShoppingCart,
-    image: 'https://naturecaresands.com.ng/wp-content/uploads/2025/10/nature-care-logo-photopea.png',
-    category: 'E-Commerce',
-    link: 'https://naturecaresands.com.ng',
-    color: 'from-emerald-500/20 to-emerald-900/20',
-    accent: 'text-emerald-400'
-  },
   {
     title: 'Case Properties - Blog',
     description: 'A monetized community platform with Google Adsense, social funnels, and interactive user feedback systems.',
