@@ -46,7 +46,7 @@ const projects = [
     icon: Users,
     tech: ['Node.js', 'Express', 'PostgreSQL', 'Stream Chat', 'JWT'],
     metrics: 'Role-Based Auth',
-    link: 'https://github.com/Edupeerhub/edupeerhub-server',
+    link: 'https://edupeerhub.com',
   },
   {
     title: 'Mini Assessment Engine',
