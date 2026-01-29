@@ -44,7 +44,7 @@ const projects = [
     description:
       'RESTful tutoring platform backend with JWT role-based authentication (Student/Tutor/Admin). Features complex session booking, tutor vetting, and review systems. Integrated Stream Chat and automated email notifications for seamless communication.',
     icon: Users,
-    tech: ['Node.js', 'Express', 'PostgreSQL', 'Stream Chat', 'JWT'],
+    tech: ['Node.js', 'Express', 'PostgreSQL', 'Stream Chat', 'JWT', "Edu-Tech"],
     metrics: 'Role-Based Auth',
     link: 'https://edupeerhub.com',
   },
