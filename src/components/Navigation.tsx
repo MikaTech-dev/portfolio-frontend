@@ -59,9 +59,6 @@ export default function Navigation({ activeSection }: NavigationProps) {
             onClick={() => scrollToSection('hero')}
             className="group flex items-center gap-2 cursor-pointer"
           >
-            <div className="p-1.5 rounded-lg bg-white/5 border border-white/10 group-hover:border-electric-violet/50 transition-colors">
-              <Terminal size={16} className="text-electric-violet" />
-            </div>
             <span className="font-mono font-bold text-lg text-white tracking-tight">
               Mikatech<span className="text-electric-violet">.dev</span>
             </span>
