@@ -1,4 +1,4 @@
-import { Globe, FileText, Gamepad2, Gift, ArrowUpRight, Cpu, Zap, Users } from 'lucide-react';
+import { Globe, FileText, Gamepad2, Gift, ArrowUpRight, Cpu, Zap, Users, Book } from 'lucide-react';
 import { motion, useInView, easeIn } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -44,10 +44,19 @@ const projects = [
     description:
       'RESTful tutoring platform backend with JWT role-based authentication (Student/Tutor/Admin). Features complex session booking, tutor vetting, and review systems. Integrated Stream Chat and automated email notifications for seamless communication.',
     icon: Users,
-    tech: ['Node.js', 'Express', 'PostgreSQL', 'Stream Chat', 'JWT'],
+    tech: ['Node.js', 'Express', 'PostgreSQL', 'Stream Chat', 'JWT', "Edu-Tech"],
     metrics: 'Role-Based Auth',
-    link: 'https://github.com/Edupeerhub/edupeerhub-server',
+    link: 'https://edupeerhub.com',
   },
+  {
+    title: 'Mini Assessment Engine',
+    description:
+      'A mini assessment engine/API made with DjangoRestFramework that allows students/users to take exams, and receive instant grading coupled with granular and insightful feedback with AI integration',
+    icon: Book,
+    tech: ['Python', 'Django', 'DjangoRestFramework', 'Pylint', 'AI', 'Google Gemini', "SQL", "Swagger", "Postman"],
+    metrics: "<3s AI Feedback latency, Open API documentation",
+    link: 'https://github.com/MikaTech-dev/mini-assessment-engine',
+  }
 ];
 
 export default function BackendProjects() {
@@ -75,13 +84,6 @@ export default function BackendProjects() {
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-24 space-y-4">
-          <motion.div 
-            variants={itemVariants} 
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-4 backdrop-blur-md"
-          >
-            <Cpu size={16} className="text-electric-violet" />
-            <span className="text-sm font-medium text-frosted-silver tracking-wide uppercase">Lab & Experiments</span>
-          </motion.div>
           
           <h2 className="text-5xl md:text-6xl font-bold text-white">
             Personal <span className="text-gradient">Projects</span>

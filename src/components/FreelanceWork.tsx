@@ -118,8 +118,7 @@ export default function FreelanceWork() {
 
             <div className="relative z-10 flex flex-col items-center text-center space-y-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-4">
-                <Sparkles size={16} className="text-electric-violet" />
-                <span className="text-sm font-medium text-frosted-silver tracking-wide uppercase">Open for Commissions</span>
+                <span className="text-sm font-medium text-frosted-silver tracking-wide uppercase">✨ I'm Open for Commissions!! ✨</span>
               </div>
 
               <h3 className="text-4xl md:text-6xl font-bold text-white leading-tight">
