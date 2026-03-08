@@ -1,4 +1,4 @@
-import { Menu, User, Code, Briefcase, Mail, X, Terminal } from 'lucide-react';
+import { Menu, User, Code, Briefcase, Mail, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 

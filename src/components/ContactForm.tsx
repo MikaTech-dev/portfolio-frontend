@@ -124,7 +124,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                     <h3 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
                       Let's Connect<Sparkles size={20} className="text-electric-violet" />
                     </h3>
-                    <p className="text-slate-400 text-sm mt-1">There's no rush... If the message doesn't go through, you can reach out to me at <a href="mailto:verasamoma@gmail.com" className='underline'>verasamoma@gmail.com</a></p>
+                    <p className="text-slate-400 text-sm mt-1">There's no rush... If the message fails to go through, you can still reach out to me @ <a href="mailto:verasamoma@gmail.com" className='underline'>verasamoma@gmail.com</a></p>
                   </div>
                   <button
                     onClick={onClose}

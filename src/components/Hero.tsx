@@ -17,9 +17,9 @@ export default function Hero() {
   "stack": [
     "MERN",
     "PERN", 
-    "WordPress"
+    "CMS": "WordPress"
   ],
-  "mission": "Committed to continuous learning and creating a tangible impact 
+  "work-ethic": "Goal focused, committed to continued learning and creating a tangible impact 
   on society through technology."
 }`;
 

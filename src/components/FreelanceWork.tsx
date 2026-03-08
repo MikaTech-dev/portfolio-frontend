@@ -1,4 +1,4 @@
-import { ExternalLink, NotebookPen, Sparkles, ArrowRight } from 'lucide-react';
+import { ExternalLink, NotebookPen, ArrowRight } from 'lucide-react';
 import { useState, useRef } from 'react';
 import { easeIn, motion, useInView } from 'framer-motion';
 import ContactForm from './ContactForm';
@@ -117,10 +117,6 @@ export default function FreelanceWork() {
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-neon-fuchsia-glow/10 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none" />
 
             <div className="relative z-10 flex flex-col items-center text-center space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-4">
-                <span className="text-sm font-medium text-frosted-silver tracking-wide uppercase">✨ I'm Open for Commissions!! ✨</span>
-              </div>
-
               <h3 className="text-4xl md:text-6xl font-bold text-white leading-tight">
                 Wanna talk <br />
                 <span className="text-electric-violet">business?</span>
