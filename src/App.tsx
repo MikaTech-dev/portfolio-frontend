@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import BackendProjects from './components/BackendProjects';
 import FreelanceWork from './components/FreelanceWork';
+import ContactSection from './components/ContactSection';
 import Navigation from './components/Navigation';
-import FloatingShapes from './components/FloatingShapes';
+import InteractiveBackground from './components/InteractiveBackground';
 import StatusIndicator from './components/StatusIndicator';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -12,14 +13,27 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'backend', 'freelance'];
+      // Check if we hit the bottom of the page
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50;
+      if (isAtBottom) {
+        setActiveSection('contact');
+        return;
+      }
+
+      // Check sections from bottom to top order for overlapping cases
+      const sections = ['contact', 'freelance', 'backend', 'hero'];
       const scrollPosition = window.scrollY + window.innerHeight / 2;
 
       for (const section of sections) {
-        const element = document.getElementById(section);
+        const elementId = section === 'contact' ? 'contact-card' : section;
+        const element = document.getElementById(elementId);
+
         if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          const rect = element.getBoundingClientRect();
+          const top = rect.top + window.scrollY;
+          const bottom = top + rect.height;
+
+          if (scrollPosition >= top && scrollPosition < bottom) {
             setActiveSection(section);
             break;
           }
@@ -32,8 +46,8 @@ function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-x-hidden">
-      <FloatingShapes />
+    <div className="relative min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 overflow-x-hidden">
+      <InteractiveBackground />
       <Navigation activeSection={activeSection} />
       <StatusIndicator />
 
@@ -48,6 +62,8 @@ function App() {
       <div id="freelance">
         <FreelanceWork />
       </div>
+
+      <ContactSection />
 
       <footer className="relative z-10 text-center text-slate-400 text-sm">
         <div className="glass-card mx-auto py-4">

@@ -41,9 +41,9 @@ export default function Navigation({ activeSection }: NavigationProps) {
   return (
     <motion.header
       className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 pointer-events-none"
-      initial={{ y: -100, opacity: 0 }}
+      initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.2, 0, 0, 1] }}
+      transition={{ type: "spring", stiffness: 120, damping: 20 }}
     >
       <div className="pointer-events-auto w-full max-w-5xl relative">
         
