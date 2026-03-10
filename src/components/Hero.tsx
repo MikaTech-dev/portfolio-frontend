@@ -57,7 +57,7 @@ export default function Hero() {
           </h2>
           <h1 className="text-6xl md:text-8xl lg:text-7xl font-bold text-white tracking-tight leading-[0.9]">
             Sam-Lebechukwu <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-frosted-silver to-slate-500">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-frosted-silver to-slate-500">
               Ikenna
             </span>
           </h1>

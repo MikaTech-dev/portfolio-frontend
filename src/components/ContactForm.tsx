@@ -1,4 +1,4 @@
-import { X, Loader2, Send, CheckCircle2 } from 'lucide-react';
+import { X, Loader2, CheckCircle2 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { submitContactForm } from '../services/api';
