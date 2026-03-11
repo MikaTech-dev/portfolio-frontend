@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import InteractiveBackground from './components/InteractiveBackground';
 import StatusIndicator from './components/StatusIndicator';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -72,6 +73,7 @@ function App() {
         </div>
       </footer>
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
