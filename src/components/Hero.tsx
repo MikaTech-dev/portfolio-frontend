@@ -16,11 +16,11 @@ export default function Hero() {
   "experience": "2+ years",
   "stack": [
     "MERN",
-    "PERN", 
-    "CMS": "WordPress"
+    "PERN",
+    "CMS": "WordPress", "Shopify"
   ],
-  "workEthic": "Goal focused, committed to continued learning and creating a tangible impact 
-  on society through technology."
+  "workEthic": "Goal focused Software Engineering Undergrad/ Junior-Midlevel Software Engineer, committed
+   to continued learning and creating a tangible impact on society via technlogy."
 }`;
 
   const containerVariants = {
