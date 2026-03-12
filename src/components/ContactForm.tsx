@@ -1,4 +1,4 @@
-import { X, Loader2, Send, CheckCircle2, Sparkles } from 'lucide-react';
+import { X, Loader2, CheckCircle2 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { submitContactForm } from '../services/api';
@@ -15,7 +15,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
     phone: '',
     message: '',
   });
-  
+
   const modalRef = useRef<HTMLDivElement>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -82,20 +82,20 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
         setErrorMessage('Failed to connect to API. Please check your internet or try again later.');
         setTimeout(() => setStatus('idle'), 3000);
         console.log(error);
-        
+
       }
     }
   };
 
-  const inputClasses = "w-full px-4 py-3 rounded-xl bg-[#0f0919]/60 border border-white/10 text-white placeholder-slate-500 focus:border-electric-violet/50 focus:ring-1 focus:ring-electric-violet/50 focus:bg-[#0f0919]/80 outline-none transition-all duration-300";
-  const labelClasses = "block text-xs font-bold text-frosted-silver uppercase tracking-wider mb-2 ml-1";
+  const inputClasses = "w-full px-5 py-4 rounded-lg bg-black/40 border border-white/5 text-white placeholder-slate-600 focus:border-white/20 focus:bg-black/60 outline-none transition-all duration-300";
+  const labelClasses = "block text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3 ml-2";
 
   if (!isOpen) return null;
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div 
+        <motion.div
           className="fixed inset-0 backdrop-blur-md bg-[#0f0919]/60 z-50 flex items-center justify-center p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -104,27 +104,25 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
           <motion.div
             ref={modalRef}
             className="w-full max-w-lg relative"
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", duration: 0.5, bounce: 0.3 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
           >
             {/* Glow Effects */}
-            <div className="absolute -top-20 -left-20 w-40 h-40 bg-electric-violet/30 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-royal-purple/30 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -top-32 -left-32 w-64 h-64 bg-electric-violet/20 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-royal-purple/20 rounded-full blur-[100px] pointer-events-none" />
 
-            <div className="glass-card relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl bg-[#1C102E]/80">
-              {/* Decorative Top Bar */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-royal-purple via-electric-violet to-neon-fuchsia-glow" />
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-[#0a0514]/95 backdrop-blur-2xl">
 
               <div className="p-8">
                 {/* Header */}
-                <div className="flex justify-between items-start mb-8">
+                <div className="flex justify-between items-start mb-10">
                   <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
-                      Let's Connect<Sparkles size={20} className="text-electric-violet" />
+                    <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                      Let's Connect
                     </h3>
-                    <p className="text-slate-400 text-sm mt-1">There's no rush... If the message doesn't go through, you can reach out to me at <a href="mailto:verasamoma@gmail.com" className='underline'>verasamoma@gmail.com</a></p>
+                    <p className="text-slate-400 text-sm mt-3 leading-relaxed max-w-sm">There's no rush... If the message fails to go through, you can still reach out to me @ <a href="mailto:verasamoma@gmail.com" className='text-white hover:underline underline-offset-4 transition-all'>verasamoma@gmail.com</a></p>
                   </div>
                   <button
                     onClick={onClose}
@@ -137,7 +135,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
 
                 <AnimatePresence mode="wait">
                   {status === 'success' ? (
-                    <motion.div 
+                    <motion.div
                       key="success"
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -150,12 +148,12 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                       <p className="text-slate-300">I'll get back to you within 12 hours.</p>
                     </motion.div>
                   ) : (
-                    <motion.form 
+                    <motion.form
                       key="form"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      onSubmit={handleSubmit} 
+                      onSubmit={handleSubmit}
                       className="space-y-5"
                     >
                       <div className="grid md:grid-cols-2 gap-5">
@@ -222,7 +220,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                       <button
                         type="submit"
                         disabled={status === 'submitting'}
-                        className="w-full py-4 rounded-xl font-bold text-lg text-white bg-gradient-to-r from-royal-purple to-electric-violet btn-glow shadow-lg shadow-royal-purple/25 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 group mt-2 cursor-pointer"
+                        className="w-full py-4 mt-8 rounded-lg font-bold text-lg text-[#0a0514] bg-white transition-all hover:scale-[1.02] hover:bg-slate-200 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 group cursor-pointer shadow-xl shadow-white/5"
                       >
                         {status === 'submitting' ? (
                           <>
@@ -232,7 +230,6 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                         ) : (
                           <>
                             <span>Send Message</span>
-                            <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
                           </>
                         )}
                       </button>

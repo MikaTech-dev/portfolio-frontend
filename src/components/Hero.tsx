@@ -16,27 +16,27 @@ export default function Hero() {
   "experience": "2+ years",
   "stack": [
     "MERN",
-    "PERN", 
-    "WordPress"
+    "PERN",
+    "CMS": "WordPress", "Shopify"
   ],
-  "mission": "Committed to continuous learning and creating a tangible impact 
-  on society through technology."
+  "workEthic": "Goal focused Software Engineering Undergrad/ Junior-Midlevel Software Engineer, committed
+   to continued learning and creating a tangible impact on society via technlogy."
 }`;
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.3 }
+      transition: { staggerChildren: 0.08, delayChildren: 0.1 }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.2, 0, 0, 1] } as const
+      transition: { type: "spring", stiffness: 110, damping: 15 } as const
     }
   };
 
@@ -45,7 +45,7 @@ export default function Hero() {
       <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-royal-purple/20 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-electric-violet/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <motion.div 
+      <motion.div
         className="max-w-5xl mx-auto w-full relative z-10"
         variants={containerVariants}
         initial="hidden"
@@ -57,7 +57,7 @@ export default function Hero() {
           </h2>
           <h1 className="text-6xl md:text-8xl lg:text-7xl font-bold text-white tracking-tight leading-[0.9]">
             Sam-Lebechukwu <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-frosted-silver to-slate-500">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-frosted-silver to-slate-500">
               Ikenna
             </span>
           </h1>
@@ -70,7 +70,7 @@ export default function Hero() {
               <span className="text-slate-600">/</span>
               <span className="text-frosted-silver">Freelancer</span>
             </h3>
-            
+
             {/* Windows-style Terminal Window */}
             <div className="glass-card rounded-lg border border-white/10 overflow-hidden bg-[#1e1e1e] backdrop-blur-xl shadow-2xl w-full">
               {/* Windows Title Bar */}
@@ -91,11 +91,11 @@ export default function Hero() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Syntax Highlighter Content */}
               <div className="text-sm md:text-base">
-                <SyntaxHighlighter 
-                  language="json" 
+                <SyntaxHighlighter
+                  language="json"
                   style={vscDarkPlus}
                   customStyle={{
                     background: 'transparent',
@@ -144,7 +144,7 @@ export default function Hero() {
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
         onClick={scrollToNext}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-white transition-colors cursor-pointer"
       >
