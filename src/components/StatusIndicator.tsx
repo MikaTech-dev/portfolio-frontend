@@ -11,7 +11,7 @@ export default function StatusIndicator() {
 
   const checkApiStatus = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -41,7 +41,7 @@ export default function StatusIndicator() {
     const statusUpdateDelay = import.meta.env.VITE_DELAY
     const statusUpdate = parseInt(statusUpdateDelay, 10)
     const interval = setInterval(checkApiStatus, statusUpdate);
-    console.log(`Get request in ${statusUpdate/1000 || 30000} Seconds.`)
+    console.log(`Get request in ${statusUpdate / 1000 || 30000} Seconds.`)
     return () => clearInterval(interval);
   }, []);
 
@@ -60,15 +60,14 @@ export default function StatusIndicator() {
             ${status.isOnline ? 'before:bg-green-400/40' : 'before:bg-red-400/40'}
           `}
         />
-        
+
         {showTooltip && (
           <div className="absolute right-6 top-1/2 -translate-y-1/2 glass-card 
             rounded-lg py-2 px-4 min-w-[200px] max-w-[300px] text-sm animate-fade-in">
             <div className="flex items-center gap-2">
-              <div 
-                className={`w-2 h-2 rounded-full ${
-                  status.isOnline ? 'bg-green-400' : 'bg-red-400'
-                }`}
+              <div
+                className={`w-2 h-2 rounded-full ${status.isOnline ? 'bg-green-400' : 'bg-red-400'
+                  }`}
               />
               <span className="text-frosted-silver">
                 {status.message}

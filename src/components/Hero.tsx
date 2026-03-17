@@ -1,9 +1,18 @@
-import { Github, Mail, ArrowDown, Twitter, Terminal, Minus, Square, X } from 'lucide-react';
+import { Github, Mail, ArrowDown, Twitter, Terminal, Minus, Square, X, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { useState } from 'react';
 
 export default function Hero() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText('verasamoma@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
   const scrollToNext = () => {
     const element = document.getElementById('backend');
     if (element) {
@@ -112,13 +121,17 @@ export default function Hero() {
           </div>
 
           <div className="flex flex-col gap-4 min-w-[200px]">
-            <a
-              href="mailto:verasamoma@gmail.com"
-              className="group flex items-center justify-between p-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all duration-300"
+            <button
+              onClick={handleCopyEmail}
+              className="group flex items-center justify-between p-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all duration-300 w-full cursor-pointer"
             >
-              <span className="text-frosted-silver font-medium">Email Me</span>
-              <Mail className="text-royal-purple group-hover:scale-110 transition-transform" size={20} />
-            </a>
+              <span className="text-frosted-silver font-medium">{copied ? "Copied!" : "Email Me"}</span>
+              {copied ? (
+                <Check className="text-green-400 group-hover:scale-110 transition-transform" size={20} />
+              ) : (
+                <Mail className="text-royal-purple group-hover:scale-110 transition-transform" size={20} />
+              )}
+            </button>
             <a
               href="https://github.com/MikaTech-dev"
               target="_blank"

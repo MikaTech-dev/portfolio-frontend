@@ -24,7 +24,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
     } else {
       element = document.getElementById(sectionId);
     }
-    
+
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setMobileMenuOpen(false);
@@ -46,14 +46,14 @@ export default function Navigation({ activeSection }: NavigationProps) {
       transition={{ type: "spring", stiffness: 120, damping: 20 }}
     >
       <div className="pointer-events-auto w-full max-w-5xl relative">
-        
+
         {/* Main Bar */}
         <div className={`
           relative flex items-center justify-between px-6 py-3 rounded-full 
           transition-all duration-500 ease-in-out border border-white/10
           ${scrolled || mobileMenuOpen ? 'bg-[#0f0919]/80 backdrop-blur-xl shadow-lg shadow-purple-900/10' : 'bg-[#0f0919]/40 backdrop-blur-md'}
         `}>
-          
+
           {/* Logo - Switched to Mono font for "Backend/Dev" feel */}
           <button
             onClick={() => scrollToSection('hero')}
@@ -140,8 +140,8 @@ export default function Navigation({ activeSection }: NavigationProps) {
                       onClick={() => scrollToSection(item.id)}
                       className={`
                         w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all
-                        ${isActive 
-                          ? 'bg-electric-violet/10 text-electric-violet' 
+                        ${isActive
+                          ? 'bg-electric-violet/10 text-electric-violet'
                           : 'text-slate-400 hover:bg-white/5 hover:text-white'
                         }
                       `}
@@ -149,9 +149,9 @@ export default function Navigation({ activeSection }: NavigationProps) {
                       <item.icon size={18} />
                       <span className="font-medium">{item.label}</span>
                       {isActive && (
-                        <motion.div 
-                          layoutId="mobile-dot" 
-                          className="ml-auto w-1.5 h-1.5 rounded-full bg-electric-violet" 
+                        <motion.div
+                          layoutId="mobile-dot"
+                          className="ml-auto w-1.5 h-1.5 rounded-full bg-electric-violet"
                         />
                       )}
                     </button>
