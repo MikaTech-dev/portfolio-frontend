@@ -18,13 +18,8 @@ export default function Navigation({ activeSection }: NavigationProps) {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    let element: Element | null = null;
-    if (sectionId === 'contact') {
-      element = document.getElementById('contact-card');
-    } else {
-      element = document.getElementById(sectionId);
-    }
-    
+    const element = document.getElementById(sectionId);
+
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setMobileMenuOpen(false);
@@ -46,14 +41,14 @@ export default function Navigation({ activeSection }: NavigationProps) {
       transition={{ type: "spring", stiffness: 120, damping: 20 }}
     >
       <div className="pointer-events-auto w-full max-w-5xl relative">
-        
+
         {/* Main Bar */}
         <div className={`
           relative flex items-center justify-between px-6 py-3 rounded-full 
           transition-all duration-500 ease-in-out border border-white/10
           ${scrolled || mobileMenuOpen ? 'bg-[#0f0919]/80 backdrop-blur-xl shadow-lg shadow-purple-900/10' : 'bg-[#0f0919]/40 backdrop-blur-md'}
         `}>
-          
+
           {/* Logo - Switched to Mono font for "Backend/Dev" feel */}
           <button
             onClick={() => scrollToSection('hero')}
@@ -73,7 +68,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`
-                    relative px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 z-10
+                    relative px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 z-10 cursor-pointer
                     ${isActive ? 'text-white' : 'text-slate-400 hover:text-white'}
                   `}
                 >
@@ -81,7 +76,8 @@ export default function Navigation({ activeSection }: NavigationProps) {
                     <motion.div
                       layoutId="nav-pill"
                       className="absolute inset-0 bg-white/10 rounded-full border border-white/5"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      layout
+                      transition={{ type: "spring", stiffness: 500, damping: 35, mass: 1 }}
                     />
                   )}
                   <span className="relative z-10 flex items-center gap-2">
@@ -139,9 +135,9 @@ export default function Navigation({ activeSection }: NavigationProps) {
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
                       className={`
-                        w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all
-                        ${isActive 
-                          ? 'bg-electric-violet/10 text-electric-violet' 
+                        w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all cursor-pointer
+                        ${isActive
+                          ? 'bg-electric-violet/10 text-electric-violet'
                           : 'text-slate-400 hover:bg-white/5 hover:text-white'
                         }
                       `}
@@ -149,9 +145,9 @@ export default function Navigation({ activeSection }: NavigationProps) {
                       <item.icon size={18} />
                       <span className="font-medium">{item.label}</span>
                       {isActive && (
-                        <motion.div 
-                          layoutId="mobile-dot" 
-                          className="ml-auto w-1.5 h-1.5 rounded-full bg-electric-violet" 
+                        <motion.div
+                          layoutId="mobile-dot"
+                          className="ml-auto w-1.5 h-1.5 rounded-full bg-electric-violet"
                         />
                       )}
                     </button>

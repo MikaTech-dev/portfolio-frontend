@@ -3,11 +3,13 @@ interface ContactFormData {
   email: string;
   phone?: string;
   message?: string;
+  website?: string;
+  recipient?: string;
 }
 
 export async function submitContactForm(formData: ContactFormData) {
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/mail`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
