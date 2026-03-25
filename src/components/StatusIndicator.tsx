@@ -15,6 +15,8 @@ export default function StatusIndicator() {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
+          'Origin': `mikatech.name.ng`,
+          'authv1': `${import.meta.env.VITE_API_KEY}`,
         },
       });
 

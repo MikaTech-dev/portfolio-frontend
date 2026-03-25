@@ -13,7 +13,9 @@ export async function submitContactForm(formData: ContactFormData) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'authv1': `${import.meta.env.VITE_API_KEY}`
       },
+      credentials: 'include',
       body: JSON.stringify(formData),
     });
 
