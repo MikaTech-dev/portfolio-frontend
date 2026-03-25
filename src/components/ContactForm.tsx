@@ -1,4 +1,4 @@
-import { Loader2, CheckCircle2, Send } from 'lucide-react';
+import { Loader2, CheckCircle2, CornerDownLeft } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { submitContactForm } from '../services/api';
@@ -160,6 +160,12 @@ export default function ContactForm() {
               id="message"
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              onKeyDown={(e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                  e.preventDefault();
+                  handleSubmit(e as unknown as React.FormEvent);
+                }
+              }}
               className={`${inputClasses} min-h-[140px] resize-y`}
               placeholder="What's on your mind?"
             />
@@ -179,7 +185,16 @@ export default function ContactForm() {
           >
             {status === 'submitting' && <Loader2 size={20} className="animate-spin" />}
             <span ref={morphRef}>Send Message</span>
-            {status !== 'submitting' && <Send size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />}
+            {status !== 'submitting' && (
+              <div className="flex items-center gap-1.5 ml-2 transition-transform group-hover:translate-x-1">
+                <kbd className="flex items-center justify-center px-2 py-0.5 rounded-md bg-white/5 border border-white/10 font-sans text-xs font-semibold text-slate-400 group-hover:text-electric-violet group-hover:border-electric-violet/30 transition-colors shadow-sm tracking-wide">
+                  Ctrl
+                </kbd>
+                <kbd className="flex items-center justify-center px-2 py-0.5 rounded-md bg-white/5 border border-white/10 font-sans text-xs font-semibold text-slate-400 group-hover:text-electric-violet group-hover:border-electric-violet/30 transition-colors shadow-sm tracking-wide pl-1.5">
+                  <CornerDownLeft size={14} className="mr-1" /> Enter
+                </kbd>
+              </div>
+            )}
           </button>
         </motion.form>
       )}
