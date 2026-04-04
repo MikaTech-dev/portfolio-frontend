@@ -19,11 +19,10 @@ export default function Hero() {
   };
 
   const techCategories = [
-
     {
       id: "backend",
       title: "Backend",
-      skills: ["Node.js", "Python", "TypeScript", "JavaScript", "Express.js", "Django", "DjangoRestFramework", "RESTful APIs", "Socket.IO", "JWT", "Sequelize ORM", "OOP", "Design Patterns"],
+      skills: ["Node.js", "Python", "TypeScript", "JavaScript", "Express.js", "Django", "DjangoRestFramework", "Socket.IO", "Sequelize ORM"],
     },
     {
       id: "frontend",
@@ -33,17 +32,17 @@ export default function Hero() {
     {
       id: "database",
       title: "Databases",
-      skills: ["PostgreSQL", "MongoDB", "SQL", "Database Modeling", "Query Optimization", "Data Migrations"],
+      skills: ["PostgreSQL", "MongoDB", "SQL"],
     },
     {
       id: "devops",
       title: "DevOps",
-      skills: ["Git/GitHub", "Linux", "AWS Serverless", "Vercel", "Render", "PipeOps", "Swagger", "Postman"],
+      skills: ["Git/GitHub", "Github Actions", "Linux", "AWS", "Vercel", "Render", "PipeOps", "Swagger", "Postman"],
     },
     {
       id: "ai",
       title: "AI & ML",
-      skills: ["Google Gemini", "AI Integration"],
+      skills: ["Google Gemini"],
     }
   ];
 
@@ -112,7 +111,7 @@ export default function Hero() {
                   <span className={`text-sm tracking-wide font-medium transition-colors ${copied ? 'text-green-400' : 'text-slate-300 group-hover:text-white'}`}>
                     {copied ? "Copied!" : "Copy Email"}
                   </span>
-                  
+
                   {/* Tooltip */}
                   <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-black/80 text-slate-300 text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none border border-white/10 backdrop-blur-md">
                     {copied ? "Copied to clipboard!" : "Click to copy my email"}
@@ -143,7 +142,7 @@ export default function Hero() {
                 {/* Section Identifier */}
                 <div className="flex items-center gap-2.5 mb-5 px-1">
                   <Code className="text-electric-violet" size={16} />
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">Technology & SkillSet</span>
+                  <span className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">Tech Stack & Tools</span>
                 </div>
                 {/* Material UI-style Floating Tab Navigation */}
                 <div className="flex overflow-x-auto gap-2 mb-8 pb-2 cursor-grab active:cursor-grabbing [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
