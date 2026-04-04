@@ -10,6 +10,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { SnackbarProvider } from 'notistack';
 import BackToTop from './components/BackToTop';
+import KeepAndroidOpenPopup from './components/KeepAndroidOpenPopup';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -84,6 +85,7 @@ function App() {
       <SpeedInsights />
       
       <BackToTop />
+      <KeepAndroidOpenPopup />
     </div>
   );
 }

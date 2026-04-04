@@ -110,12 +110,12 @@ export default function Hero() {
                 >
                   {copied ? <Check size={18} className="text-green-500" /> : <Mail size={18} className="text-slate-400 group-hover:text-electric-violet transition-colors" />}
                   <span className={`text-sm tracking-wide font-medium transition-colors ${copied ? 'text-green-400' : 'text-slate-300 group-hover:text-white'}`}>
-                    {copied ? "Copied!" : "Email Me"}
+                    {copied ? "Copied!" : "Copy Email"}
                   </span>
                   
                   {/* Tooltip */}
                   <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-black/80 text-slate-300 text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none border border-white/10 backdrop-blur-md">
-                    {copied ? "Copied to clipboard!" : "Click to copy email"}
+                    {copied ? "Copied to clipboard!" : "Click to copy my email"}
                   </span>
                 </button>
                 <a
