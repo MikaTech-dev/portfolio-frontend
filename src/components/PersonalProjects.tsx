@@ -1,4 +1,4 @@
-import { Globe, FileText, Gamepad2, Gift, ArrowUpRight, Users, Book, ChevronDown, ChevronUp, Loader2 } from 'lucide-react';
+import { Globe, FileText, Gamepad2, Gift, ArrowUpRight, Users, Book, ChevronDown, ChevronUp, Loader2, Tv, Mail } from 'lucide-react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { TextMorph } from 'torph';
@@ -134,7 +134,7 @@ export default function BackendProjects() {
   const handleShowLess = () => {
     setVisibleCount(initialLimit);
     if (sectionRef.current) {
-        (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
+      (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
     }
   };
 
