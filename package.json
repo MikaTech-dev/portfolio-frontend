@@ -11,15 +11,22 @@
     "typecheck": "tsc --noEmit -p tsconfig.app.json"
   },
   "dependencies": {
-    "@types/react-syntax-highlighter": "^15.5.13",
+    "@developer-hub/liquid-glass": "^1.2.3",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.9",
+    "@mui/material": "^7.3.9",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^2.0.0",
     "axios": "^1.13.2",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.344.0",
+    "notistack": "^3.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-syntax-highlighter": "^16.1.0"
+    "react-hot-toast": "^2.6.0",
+    "react-toastify": "^11.0.5",
+    "torph": "^0.0.9"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",

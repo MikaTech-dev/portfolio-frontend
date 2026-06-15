@@ -1,6 +1,7 @@
-import { Globe, FileText, Gamepad2, Gift, ArrowUpRight, Zap, Users, Book, ChevronDown, ChevronUp, Tv, Mail } from 'lucide-react';
+import { Globe, FileText, Gamepad2, Gift, ArrowUpRight, Users, Book, ChevronDown, ChevronUp, Loader2 } from 'lucide-react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { TextMorph } from 'torph';
 
 const projects = [
   {
@@ -80,18 +81,73 @@ const projects = [
 export default function BackendProjects() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '0px 0px -100px 0px' });
-  const [showAll, setShowAll] = useState(false);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+  const [initialLimit, setInitialLimit] = useState(isMobile ? 3 : 6);
+  const [visibleCount, setVisibleCount] = useState(isMobile ? 3 : 6);
+  const [isLoading, setIsLoading] = useState(false);
+  const morphRef = useRef<HTMLSpanElement>(null);
+  const morphInstance = useRef<TextMorph | null>(null);
 
-  const visibleProjects = showAll ? projects : projects.slice(0, 6);
+  useEffect(() => {
+    if (morphRef.current && !morphInstance.current) {
+      morphInstance.current = new TextMorph({
+        element: morphRef.current,
+        duration: 400,
+        ease: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      });
+      // Force sync initial text just in case
+      morphInstance.current.update(visibleCount >= projects.length ? 'Show Less' : 'Load More');
+    }
+  });
+
+  const isAllVisible = visibleCount >= projects.length;
+
+  useEffect(() => {
+    if (morphInstance.current) {
+      if (isLoading) {
+        morphInstance.current.update('Loading...');
+      } else {
+        morphInstance.current.update(isAllVisible ? 'Show Less' : 'Load More');
+      }
+    }
+  }, [isLoading, isAllVisible]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 1024;
+      setInitialLimit(mobile ? 3 : 6);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleLoadMore = () => {
+    setIsLoading(true);
+    // Simulate AJAX network request delay for UX polished feel
+    setTimeout(() => {
+      setVisibleCount(prev => prev + initialLimit);
+      setIsLoading(false);
+    }, 1000);
+  };
+
+  const handleShowLess = () => {
+    setVisibleCount(initialLimit);
+    if (sectionRef.current) {
+        (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const visibleProjects = projects.slice(0, visibleCount);
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20, scale: 0.98 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 100, damping: 15 } as const },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 90, damping: 20 } as const },
     exit: { opacity: 0, y: 20, scale: 0.98, transition: { duration: 0.2 } }
   };
 
@@ -133,55 +189,39 @@ export default function BackendProjects() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative flex flex-col h-full bg-[#0f0919]/60 backdrop-blur-md border border-white/5 rounded-3xl p-8 overflow-hidden transition-all duration-300 hover:border-electric-violet/30 hover:shadow-lg hover:shadow-electric-violet/10 hover:-translate-y-2"
+                    className="group relative flex flex-col h-full bg-[#0a0510]/80 backdrop-blur-md border border-white/3 rounded-2xl p-6 md:p-7 overflow-hidden transition-all duration-300 hover:border-white/10 hover:bg-[#0f0919] hover:-translate-y-1"
                   >
-                    {/* Background Decor */}
-                    <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none">
-                      <Icon size={120} />
-                    </div>
-                    <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-royal-purple/20 blur-3xl rounded-full group-hover:bg-electric-violet/20 transition-colors duration-500" />
-
-                    {/* Top Row: Icon & External Link */}
-                    <div className="flex justify-between items-start mb-6 relative z-10">
-                      <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:border-electric-violet/50 transition-all duration-300">
-                        <Icon size={24} className="text-frosted-silver group-hover:text-white transition-colors" />
-                      </div>
-
-                      <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                        <ArrowUpRight className="text-electric-violet" size={20} />
-                      </div>
+                    {/* Background Decor Component */}
+                    <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-10 transition-opacity duration-300 pointer-events-none">
+                      <Icon size={100} />
                     </div>
 
                     {/* Content */}
-                    <div className="relative z-10 grow">
-                      <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-electric-violet transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                    <div className="relative z-10 grow mb-6">
+                      <div className="flex justify-between items-start mb-4">
+                        <h3 className="text-xl font-semibold text-white group-hover:text-electric-violet transition-colors">
+                          {project.title}
+                        </h3>
+                        <div className="opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          <ArrowUpRight className="text-electric-violet" size={18} />
+                        </div>
+                      </div>
+                      <p className="text-slate-400/90 text-sm md:text-base leading-relaxed">
                         {project.description}
                       </p>
                     </div>
 
-                    {/* Footer: Tech & Metrics */}
-                    <div className="relative z-10 space-y-4 mt-auto">
-                      {/* Tech Stack Pill Grid */}
+                    {/* Footer: Tech Stack */}
+                    <div className="relative z-10 mt-auto">
                       <div className="flex flex-wrap gap-2">
                         {project.tech.map((tech) => (
                           <span
                             key={tech}
-                            className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md bg-white/5 text-slate-400 border border-white/5 group-hover:border-white/10 transition-colors"
+                            className="px-2.5 py-1 text-xs font-medium uppercase tracking-wider rounded border border-white/5 bg-white/5 text-slate-400 group-hover:bg-white/10 transition-colors"
                           >
                             {tech}
                           </span>
                         ))}
-                      </div>
-
-                      {/* Metrics Line */}
-                      <div className="flex items-center gap-2 pt-4 border-t border-white/5">
-                        <Zap size={14} className="text-electric-violet" />
-                        <span className="text-xs font-medium text-frosted-silver">
-                          {project.metrics}
-                        </span>
                       </div>
                     </div>
                   </a>
@@ -191,20 +231,23 @@ export default function BackendProjects() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Load More Button */}
-        {projects.length > 6 && (
+        {/* Pagination & Load Controls */}
+        {projects.length > initialLimit && (
           <motion.div
-            className="mt-16 flex justify-center"
+            className="mt-16 flex justify-center gap-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.7 }}
           >
             <button
-              onClick={() => setShowAll(!showAll)}
-              className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white font-medium transition-all duration-300 hover:bg-white/10 hover:border-electric-violet/30 hover:text-electric-violet cursor-pointer"
+              onClick={isAllVisible ? handleShowLess : handleLoadMore}
+              disabled={isLoading}
+              className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white font-medium transition-all duration-300 hover:bg-white/10 hover:border-electric-violet/30 hover:text-electric-violet cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              <span className="relative z-10">{showAll ? 'Show Less' : 'View All Projects'}</span>
-              {showAll ? (
+              <span ref={morphRef} className="relative z-10 whitespace-nowrap">Load More</span>
+              {isLoading ? (
+                <Loader2 size={18} className="relative z-10 animate-spin" />
+              ) : isAllVisible ? (
                 <ChevronUp size={18} className="relative z-10 transition-transform group-hover:-translate-y-1" />
               ) : (
                 <ChevronDown size={18} className="relative z-10 transition-transform group-hover:translate-y-1" />

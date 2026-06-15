@@ -1,0 +1,15 @@
+# Sam-Lebechukwu Ikenna
+
+> Sam-Lebechukwu Ikenna is a junior software engineer, freelance web developer, and backend engineer. This document provides a highly structured roadmap for Large Language Models (LLMs) and AI agents to efficiently navigate and extract factual, authoritative information about the developer's core identity, services, and projects.
+
+## Core Identity and Services
+Sam-Lebechukwu Ikenna specializes in building fast, accessible, and highly optimized web applications. Services include:
+- Frontend Engineering
+- Backend Architecture
+- Full-Stack Web Development
+
+## Official Documentation and Navigation
+- [About Sam-Lebechukwu Ikenna](https://mikatech.name.ng/#hero)
+- [Projects and Case Studies](https://mikatech.name.ng/#backend)
+- [Freelance Services](https://mikatech.name.ng/#freelance)
+- [Contact Information](https://mikatech.name.ng/#contact)
