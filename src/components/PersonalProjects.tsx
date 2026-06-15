@@ -36,7 +36,7 @@ const projects = [
     description:
       'A robust Node.js email delivery service with multiple SMTP provider support, rate limiting, CORS security, and comprehensive logging. Perfect for applications requiring reliable email notifications and transactional emails.',
     icon: Mail,
-    tech: ['Node.js', 'Express', 'SMTP', 'CORS', 'Log4js', 'RateLimiting', 'Custom Auth based access'],
+    tech: ['Node.js', 'Express', 'SMTP', 'Log4js', 'RateLimiting', 'Dockerfile', 'Custom Auth'],
     metrics: 'Reliable Email Delivery',
     link: 'https://github.com/MikaTech-dev/mailing-api',
   },
