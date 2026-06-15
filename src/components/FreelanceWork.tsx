@@ -1,12 +1,13 @@
-import { NotebookPen, ArrowRight } from 'lucide-react';
+import { NotebookPen, ArrowRight, TestTube2 } from 'lucide-react';
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import caseImage from '../assets/CASE PROPERTIES LOGO.jpg'
+import klaroImage from '../assets/klaro-logo.png'
 
 const websites = [
   {
-    title: 'Case Properties - Blog',
-    description: 'A monetized community platform with Google Adsense, social funnels, and interactive user feedback systems.',
+    title: 'Case Properties - Blog-Site',
+    description: 'I\'m building a monetized community platform for Case Properties with Google AdSense, and interactive user feedback systems.',
     icon: NotebookPen,
     image: caseImage,
     category: 'Blog & Community',
@@ -14,6 +15,16 @@ const websites = [
     color: 'from-orange-500/20 to-orange-900/20',
     accent: 'text-orange-400'
   },
+  {
+    title: 'Klaro - QA Testing',
+    description: 'I\'m currently performing end-to-end QA Testing for Klaro, an AI-powered startup that breaks down complex legal documents into plain English.',
+    icon: TestTube2,
+    image: klaroImage,
+    category: 'QA Testing',
+    link: 'https://klaro.ng',
+    color: 'from-yellow-500/20 to-green-900/20',
+    accent: 'text-yellow-400'
+  }
 ];
 
 export default function FreelanceWork() {
