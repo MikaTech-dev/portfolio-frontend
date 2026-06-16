@@ -1,4 +1,4 @@
-import { Globe, FileText, Gamepad2, Gift, ArrowUpRight, Users, Book, ChevronDown, ChevronUp, Loader2 } from 'lucide-react';
+import { Globe, FileText, Gamepad2, Gift, ArrowUpRight, Users, Book, ChevronDown, ChevronUp, Loader2, Tv, Mail } from 'lucide-react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { TextMorph } from 'torph';
@@ -14,36 +14,54 @@ const projects = [
     link: 'https://edupeerhub.com',
   },
   {
-    title: 'Mini Assessment Engine',
+    title: 'Mini Assessment Engine (MAE)',
     description:
-      'A mini assessment engine/API made with DjangoRestFramework that allows students/users to take exams, and receive instant grading coupled with granular and insightful feedback with AI integration',
+      'A mini assessment engine/API made with DjangoRestFramework that allows students/users to take exams, and receive instant assessments (including granular and insightful feedback via AI integration)',
     icon: Book,
-    tech: ['Python', 'Django', 'DjangoRestFramework', 'Pylint', 'AI', 'Google Gemini', "SQL", "Swagger", "Postman"],
+    tech: ['Python', 'Django', 'AI', "SQL", "Swagger", "Edu-Tech"],
     metrics: "<3s AI Feedback latency, Open API documentation",
     link: 'https://github.com/MikaTech-dev/mini-assessment-engine',
   },
   {
-    title: 'Number Game',
+    title: 'Android TV Remote',
+    description:
+      'A locally-hosted web app to control Android TV devices over a local network. Features a sleek remote-inspired UI and handles secure connections via a cryptographic PIN-pairing handshake.',
+    icon: Tv,
+    tech: ['Node.js', 'Express', 'SocketIO', 'Log4js', 'Jest', 'Supertest'],
+    link: 'https://github.com/MikaTech-dev/android-tv-remote',
+    metrics: 'Works as expected, via cryptographic handshake'
+  },
+  {
+    title: 'Mailing API',
+    description:
+      'A robust Node.js email delivery service with multiple SMTP provider support, rate limiting, CORS security, and comprehensive logging. Perfect for applications requiring reliable email notifications and transactional emails.',
+    icon: Mail,
+    tech: ['Node.js', 'Express', 'SMTP', 'Log4js', 'RateLimiting', 'Dockerfile', 'Custom Auth'],
+    metrics: 'Reliable Email Delivery',
+    link: 'https://github.com/MikaTech-dev/mailing-api',
+  },
+  {
+    title: 'Multiplayer Number Guessing Game',
     description:
       'A real-time multiplayer guessing game with multi-role support (host and players). Features live socket connections and continuous session tracking via MongoDB.',
     icon: Gamepad2,
-    tech: ['Node.js', 'Express', 'Socket.io', 'MongoDB', 'EJS'],
+    tech: ['Node.js', 'Express', 'JWT', 'WebSockets', 'Socket.io', 'MongoDB', 'EJS'],
     metrics: 'Real-time WebSockets',
     link: 'https://github.com/MikaTech-dev/number-guessing-game-js',
   },
   {
-    title: 'Blog App',
+    title: 'Blog API with EJS',
     description:
-      "A secure blogging platform with auth, draft controls, and view tracking. Users can manage posts via a clean EJS-based frontend.",
+      "A secure blog API with auth, draft controls, and view tracking. Users can perform CRUD operations on their posts via a clean EJS template for direct interaction.",
     icon: FileText,
     tech: ['Node.js', 'Express', 'MongoDB', 'JWT', 'Bcrypt', 'Jest', 'Supertest', 'EJS'],
     metrics: '< 50ms API Response',
     link: 'https://github.com/MikaTech-dev/blog-app',
   },
   {
-    title: 'Birthday Reminder',
+    title: 'Automated Birthday Wisher',
     description:
-      'Automated email system sending personalized wishes at 7 AM daily using cron jobs and idempotent logic to prevent duplicates.',
+      'An automated mailing system, sending personalized birthday wishes at 7 AM daily using cron jobs and idempotent logic, preventing duplicates.',
     icon: Gift,
     tech: ['Node.js', 'Nodemailer', 'Cron', 'MongoDB'],
     metrics: '99.9% Delivery Rate',
@@ -52,10 +70,10 @@ const projects = [
   {
     title: 'Portfolio Site',
     description:
-      'A modern, responsive portfolio website showcasing projects and skills. Built with React and TypeScript, featuring smooth animations and optimized performance.',
+      'A modern, responsive portfolio website showcasing my projects and skills. Built with React and TypeScript, featuring smooth animations and optimized performance.',
     icon: Globe,
     tech: ['React', 'TypeScript', 'Tailwind', 'Vite', 'Motion'],
-    metrics: '100% Lighthouse Score',
+    metrics: '>80%+ Lighthouse Score',
     link: 'https://github.com/MikaTech-dev/portfolio-frontend',
   }
 ];
@@ -116,7 +134,7 @@ export default function BackendProjects() {
   const handleShowLess = () => {
     setVisibleCount(initialLimit);
     if (sectionRef.current) {
-        (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
+      (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
     }
   };
 
