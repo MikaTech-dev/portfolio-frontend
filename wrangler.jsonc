@@ -20,5 +20,11 @@
 			"binding": "WORKER_SELF_REFERENCE",
 			"service": "portfolio-frontend"
 		}
-	]
+	],
+	"previews": {
+		"vars": {
+			"API_URL": "https://mail.mikatech.top",
+			"NEXT_PUBLIC_API_URL": "https://mail.mikatech.top"
+		}
+	}
 }
