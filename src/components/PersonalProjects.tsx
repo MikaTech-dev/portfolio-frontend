@@ -251,11 +251,11 @@ export default function BackendProjects() {
 
 										{/* Footer: Tech Stack */}
 										<div className="relative z-10 mt-auto">
-											<div className="flex flex-wrap gap-2">
+											<div className="flex flex-wrap gap-1.5">
 												{project.tech.map((tech) => (
 													<span
 														key={tech}
-														className="px-2.5 py-1 text-xs font-medium uppercase tracking-wider rounded border border-white/5 bg-white/5 text-slate-400 group-hover:bg-white/10 transition-colors"
+														className="px-2.5 py-1 rounded-full text-[11px] font-semibold text-white/90 bg-black/65 backdrop-blur-md border border-white/10 shadow-sm"
 													>
 														{tech}
 													</span>
