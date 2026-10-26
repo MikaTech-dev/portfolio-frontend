@@ -1,0 +1,30 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "portfolio-frontend",
+	"compatibility_date": "2026-09-18",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"main": ".open-next/worker.js",
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"vars": {
+		"API_URL": "https://mail.mikatech.top",
+		"NEXT_PUBLIC_API_URL": "https://mail.mikatech.top"
+	},
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "portfolio-frontend"
+		}
+	],
+	"previews": {
+		"vars": {
+			"API_URL": "https://mail.mikatech.top",
+			"NEXT_PUBLIC_API_URL": "https://mail.mikatech.top"
+		}
+	}
+}
