@@ -8,7 +8,7 @@ interface ApiStatus {
 }
 
 const statusUpdateDelay =
-	process.env.NEXT_PUBLIC_DELAY || process.env.VITE_DELAY || "60000";
+	process.env.NEXT_PUBLIC_DELAY || process.env.VITE_DELAY || "90000";
 
 export default function StatusIndicator() {
 	const [status, setStatus] = useState<ApiStatus>({
@@ -33,7 +33,16 @@ export default function StatusIndicator() {
 					message: data.message || "API is online",
 				});
 			} else {
-				throw new Error(`API responded with status: ${response.status}`);
+				const errorData = await response.json().catch(() => null);
+				const errorMsg =
+					response.status === 429
+						? "API is rate limited"
+						: errorData?.error ||
+							`API responded with status: ${response.status}`;
+				setStatus({
+					isOnline: false,
+					message: errorMsg,
+				});
 			}
 		} catch (error) {
 			setStatus({
@@ -46,9 +55,10 @@ export default function StatusIndicator() {
 
 	useEffect(() => {
 		checkApiStatus();
-		const statusUpdate = parseInt(statusUpdateDelay, 10);
+		const parsed = Number.parseInt(statusUpdateDelay, 10);
+		const statusUpdate =
+			!Number.isNaN(parsed) && parsed >= 60000 ? parsed : 90000;
 		const interval = setInterval(checkApiStatus, statusUpdate);
-		console.log(`Get request in ${statusUpdate / 1000 || 30000} Seconds.`);
 		return () => clearInterval(interval);
 	}, [checkApiStatus]);
 

@@ -17,12 +17,31 @@ export async function GET() {
 			},
 		});
 
-		const data = await response.json().catch(() => ({}));
+		const rawText = await response.text();
+		let data: Record<string, unknown>;
+		try {
+			data = JSON.parse(rawText);
+		} catch {
+			data = {
+				error:
+					rawText ||
+					response.statusText ||
+					`Upstream returned status ${response.status}`,
+			};
+		}
+
+		if (!response.ok) {
+			console.error(
+				`[api/status] Upstream error from ${targetUrl}/api -> status ${response.status}:`,
+				data.error || rawText,
+			);
+		}
 
 		return NextResponse.json(data, { status: response.status });
 	} catch (error) {
 		const message =
 			error instanceof Error ? error.message : "Internal proxy error";
+		console.error("[api/status] Proxy exception:", message);
 		return NextResponse.json({ error: message }, { status: 500 });
 	}
 }
