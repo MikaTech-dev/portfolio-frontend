@@ -1,14 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import {
-	ArrowRight,
-	ChevronDown,
-	ChevronUp,
-	Cpu,
-	Loader2,
-	ShoppingBag,
-} from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronUp, Loader2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { TextMorph } from "torph";
 import kdkImage from "../assets/kdk-logo.png";
@@ -20,23 +13,17 @@ const websites = [
 		title: "KDK Phones & Gadgets",
 		description:
 			"Built and maintain the full-stack web storefront, device trade-in valuation flow, and administrative inventory management system with Paystack checkout and Cloudflare protection.",
-		icon: ShoppingBag,
 		image: kdkImage,
-		category: "E-Commerce & Retail",
+		tags: ["E-Commerce", "Retail"],
 		link: "https://kdkphones.com",
-		color: "from-blue-500/20 to-blue-900/20",
-		accent: "text-blue-400",
 	},
 	{
 		title: "Klaro.ng",
 		description:
 			"Lead engineer for the Next.js web application built to design team specifications. Developed the AI document extraction pipeline for Nigerian utility bills and invoices, and manage deployment across frontend and backend services using Cloudflare.",
-		icon: Cpu,
 		image: klaroImage,
-		category: "Lead Engineer",
+		tags: ["Lead Engineer", "AI Pipeline"],
 		link: "https://klaro.ng",
-		color: "from-emerald-500/20 to-green-900/20",
-		accent: "text-emerald-400",
 	},
 ];
 
@@ -144,66 +131,73 @@ export default function FreelanceWork() {
 					</p>
 				</div>
 
-				<motion.div className="grid lg:grid-cols-2 gap-10" layout>
+				<motion.div
+					className="grid sm:grid-cols-2 max-w-3xl mx-auto gap-6 lg:gap-8"
+					layout
+				>
 					<AnimatePresence mode="popLayout">
-						{visibleWebsites.map((site) => {
-							const Icon = site.icon;
-							return (
-								<motion.a
-									href={site.link}
-									target="_blank"
-									rel="noopener noreferrer"
-									key={site.title}
-									variants={cardVariants}
-									initial="hidden"
-									animate="visible"
-									exit={{
-										opacity: 0,
-										y: 20,
-										scale: 0.98,
-										transition: { duration: 0.2 },
-									}}
-									layout
-									className="group relative flex flex-col w-full rounded-2xl overflow-hidden border border-white/5 bg-[#0a0510]/80 backdrop-blur-md hover:border-white/10 hover:bg-[#0f0919] hover:-translate-y-1 transition-all duration-300 shadow-2xl shadow-black/50"
-								>
-									<SpotlightBorder />
-									{/* Image Container */}
-									<div className="relative w-full h-[240px] md:h-[280px] overflow-hidden border-b border-white/5 bg-[#05020a]">
-										<img
-											src={
-												typeof site.image === "string"
-													? site.image
-													: (site.image as { src?: string }).src || ""
-											}
-											alt={site.title}
-											className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-700 ease-out"
-										/>
-										{/* Category Tag */}
-										<div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-[#0a0510]/80 backdrop-blur-md shadow-sm">
-											<Icon size={14} className={site.accent} />
-											<span className="text-xs font-semibold text-slate-200 uppercase tracking-widest">
-												{site.category}
-											</span>
-										</div>
-									</div>
+						{visibleWebsites.map((site) => (
+							<motion.a
+								href={site.link}
+								target="_blank"
+								rel="noopener noreferrer"
+								key={site.title}
+								variants={cardVariants}
+								initial="hidden"
+								animate="visible"
+								exit={{
+									opacity: 0,
+									y: 20,
+									scale: 0.98,
+									transition: { duration: 0.2 },
+								}}
+								layout
+								className="group relative flex flex-col w-full rounded-2xl overflow-hidden border border-white/10 bg-[#0a0510]/60 backdrop-blur-md hover:border-white/20 hover:bg-[#0f0919]/70 hover:-translate-y-1 transition-all duration-300 shadow-xl shadow-black/40"
+							>
+								<SpotlightBorder />
 
-									{/* Content Wrapper */}
-									<div className="flex flex-col grow p-6 md:p-8">
-										<div className="flex justify-between items-start mb-4">
-											<h3 className="text-2xl font-semibold text-white group-hover:text-electric-violet transition-colors duration-300 tracking-tight">
-												{site.title}
-											</h3>
-											<div className="opacity-0 group-hover:opacity-100 transition-all duration-300 text-electric-violet">
-												<ArrowRight size={20} className="-rotate-45" />
-											</div>
-										</div>
-										<p className="text-slate-400 text-sm md:text-base leading-relaxed">
-											{site.description}
-										</p>
+								{/* Image / Logo Container */}
+								<div className="relative w-full h-44 sm:h-48 overflow-hidden border-b border-white/5 bg-gradient-to-b from-[#140b24]/50 to-[#070310]/80 flex items-center justify-center p-2">
+									<img
+										src={
+											typeof site.image === "string"
+												? site.image
+												: (site.image as { src?: string }).src || ""
+										}
+										alt={site.title}
+										className="w-full h-full object-contain scale-110 sm:scale-115 group-hover:scale-125 transition-transform duration-500 ease-out opacity-90 group-hover:opacity-100 drop-shadow-md"
+									/>
+
+									{/* Brief Tags inside the image container, bottom-left */}
+									<div className="absolute bottom-3 left-3 flex flex-wrap items-center gap-1.5 z-10">
+										{site.tags.map((tag) => (
+											<span
+												key={tag}
+												className="px-2.5 py-1 rounded-full text-[11px] font-semibold text-white/90 bg-black/65 backdrop-blur-md border border-white/10 shadow-sm"
+											>
+												{tag}
+											</span>
+										))}
 									</div>
-								</motion.a>
-							);
-						})}
+								</div>
+
+								{/* Content Area */}
+								<div className="flex flex-col grow p-5 space-y-2">
+									<div className="flex justify-between items-center gap-2">
+										<h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-electric-violet transition-colors duration-300 tracking-tight">
+											{site.title}
+										</h3>
+										<ArrowRight
+											size={16}
+											className="-rotate-45 text-slate-400 group-hover:text-electric-violet transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
+										/>
+									</div>
+									<p className="text-xs sm:text-sm text-slate-400 leading-relaxed line-clamp-3">
+										{site.description}
+									</p>
+								</div>
+							</motion.a>
+						))}
 					</AnimatePresence>
 				</motion.div>
 
