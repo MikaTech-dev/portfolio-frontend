@@ -8,7 +8,7 @@ The project uses Next.js App Router with vertical section components and server-
 
 ### Client components
 
-- Hero section with career highlights, resume access, and verified profile links.
+- Hero section with career background, verified profile links, and a full-width flat bento grid featuring core languages, frameworks, cloud platforms, and databases with intersection markers and instant tooltips.
 - Personal projects section featuring live demos, open-source utilities, and hackathon research builds with reactive corner spotlight borders.
 - Commercial client work showcase covering production platforms such as KDK Phones and Gadgets and Klaro.ng.
 - Contact section with client-side form validation and instant feedback.

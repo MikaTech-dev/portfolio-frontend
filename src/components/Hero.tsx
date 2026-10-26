@@ -1,8 +1,10 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowDown, Check, Code, Mail } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowDown, Check, Mail } from "lucide-react";
 import { useState } from "react";
+import TechStackGrid from "./TechStackGrid";
+import Tooltip from "./Tooltip";
 
 function Github({
 	size = 24,
@@ -66,12 +68,12 @@ function Quora({
 		<svg
 			width={size}
 			height={size}
-			viewBox="0 0 24 24"
+			viewBox="0 0 448 512"
 			fill="currentColor"
 			className={className}
 		>
 			<title>Quora</title>
-			<path d="M12 2C6.486 2 2 6.486 2 12c0 5.514 4.486 10 10 10 1.936 0 3.735-.558 5.267-1.521l1.637 1.472a1 1 0 0 0 1.405-.074 1 1 0 0 0-.074-1.405l-1.42-1.277C20.306 17.585 22 14.995 22 12c0-5.514-4.486-10-10-10zm0 17.5c-4.136 0-7.5-3.364-7.5-7.5S7.864 4.5 12 4.5s7.5 3.364 7.5 7.5c0 2.222-.977 4.22-2.527 5.59l-.914-.822a1 1 0 0 0-1.365 1.462l.85.764C14.409 19.317 13.238 19.5 12 19.5z" />
+			<path d="M440.5 386.7h-29.3c-1.5 13.5-10.5 30.8-33 30.8-20.5 0-35.3-14.2-49.5-35.8 44.2-34.2 74.7-87.5 74.7-153C403.5 111.2 306.8 32 205 32 105.3 32 7.3 111.7 7.3 228.7c0 134.1 131.3 221.6 249 189C276 451.3 302 480 351.5 480c81.8 0 90.8-75.3 89-93.3zM297 329.2C277.5 300 253.3 277 205.5 277c-30.5 0-54.3 10-69 22.8l12.2 24.3c6.2-3 13-4 19.8-4 35.5 0 53.7 30.8 69.2 61.3-10 3-20.7 4.2-32.7 4.2-75 0-107.5-53-107.5-156.7C97.5 124.5 130 71 205 71c76.2 0 108.7 53.5 108.7 157.7.1 41.8-5.4 75.6-16.7 100.5z" />
 		</svg>
 	);
 }
@@ -92,71 +94,6 @@ export default function Hero() {
 		}
 	};
 
-	const techCategories = [
-		{
-			id: "backend",
-			title: "Backend",
-			skills: [
-				"Node.js",
-				"NestJS",
-				"TypeScript",
-				"Express.js",
-				"Python",
-				"Django REST",
-				"Socket.IO",
-				"Drizzle ORM",
-				"Sequelize ORM",
-			],
-		},
-		{
-			id: "frontend",
-			title: "Frontend",
-			skills: [
-				"Next.js",
-				"React",
-				"TypeScript",
-				"Tailwind CSS",
-				"HTML5",
-				"CSS3",
-				"Framer Motion",
-				"Vue.js",
-			],
-		},
-		{
-			id: "database",
-			title: "Databases",
-			skills: ["PostgreSQL", "Redis", "MongoDB", "SQL"],
-		},
-		{
-			id: "cloud-devops",
-			title: "Cloud & DevOps",
-			skills: [
-				"Cloudflare",
-				"Linux",
-				"Git & GitHub",
-				"GitHub Actions",
-				"Docker",
-				"AWS",
-				"Render",
-				"Vercel",
-				"Swagger",
-				"Postman",
-			],
-		},
-		{
-			id: "ai-web3",
-			title: "AI & Web3",
-			skills: [
-				"DeepSeek",
-				"Google Gemini",
-				"Solidity",
-				"Foundry",
-				"Ethers / Wagmi",
-			],
-		},
-	];
-
-	const [activeTab, setActiveTab] = useState(techCategories[0].id);
 	const containerVariants = {
 		hidden: { opacity: 0 },
 		visible: {
@@ -246,9 +183,11 @@ export default function Hero() {
 									</span>
 
 									{/* Tooltip */}
-									<span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-black/80 text-slate-300 text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none border border-white/10 backdrop-blur-md">
-										{copied ? "Copied to clipboard!" : "Click to copy my email"}
-									</span>
+									<Tooltip
+										text={
+											copied ? "Copied to clipboard!" : "Click to copy my email"
+										}
+									/>
 								</button>
 								<a
 									href="https://github.com/MikaTech-dev"
@@ -291,79 +230,12 @@ export default function Hero() {
 									<span className="text-sm tracking-wide font-medium text-slate-300 group-hover:text-white transition-colors">
 										Quora
 									</span>
-									<span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-black/80 text-slate-300 text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none border border-white/10 backdrop-blur-md">
-										271k+ views helping people troubleshoot tech
-									</span>
+									<Tooltip text="271k+ views helping people troubleshoot tech" />
 								</a>
 							</div>
 
-							<div className="w-full mt-2 lg:max-w-4xl bg-[#0a0510]/30 backdrop-blur-xl border border-white/5 rounded-2xl p-4 md:p-6 shadow-2xl relative">
-								{/* Section Identifier */}
-								<div className="flex items-center gap-2.5 mb-5 px-1">
-									<Code className="text-electric-violet" size={16} />
-									<span className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">
-										Tech Stack & Tools
-									</span>
-								</div>
-								{/* Material UI-style Floating Tab Navigation */}
-								<div className="flex overflow-x-auto gap-2 mb-8 pb-2 cursor-grab active:cursor-grabbing [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-									{techCategories.map((category) => {
-										const isActive = activeTab === category.id;
-										return (
-											<button
-												type="button"
-												key={category.id}
-												onClick={() => setActiveTab(category.id)}
-												className={`relative px-5 py-2.5 text-sm font-semibold tracking-wide whitespace-nowrap transition-colors focus:outline-none rounded-full flex items-center group
-                          ${isActive ? "text-white" : "text-slate-400 hover:text-slate-200 hover:bg-white/5"}
-                        `}
-											>
-												{isActive && (
-													<motion.div
-														layoutId="heroMuiTabIndicator"
-														className="absolute inset-0 bg-[#1e1136] border border-royal-purple/40 shadow-[0_4px_15px_rgba(124,58,237,0.15)] rounded-full z-0"
-														initial={false}
-														transition={{
-															type: "spring",
-															stiffness: 450,
-															damping: 30,
-														}}
-													/>
-												)}
-												<span className="relative z-10">{category.title}</span>
-											</button>
-										);
-									})}
-								</div>
-
-								{/* Active Tab Panel Content */}
-								<motion.div layout className="px-2">
-									<AnimatePresence mode="wait">
-										{techCategories.map(
-											(category) =>
-												category.id === activeTab && (
-													<motion.div
-														key={category.id}
-														initial={{ opacity: 0, scale: 0.95 }}
-														animate={{ opacity: 1, scale: 1 }}
-														exit={{ opacity: 0, scale: 0.95 }}
-														transition={{ duration: 0.25, ease: "easeOut" }}
-													>
-														<div className="flex flex-wrap gap-2.5">
-															{category.skills.map((tech) => (
-																<span
-																	key={tech}
-																	className="px-3.5 py-1.5 rounded-lg border border-white/5 bg-[#05020a]/80 text-slate-500 text-xs md:text-sm font-semibold hover:border-royal-purple/60 hover:bg-white/10 hover:text-white transition-all duration-300 shadow-sm cursor-default hover:-translate-y-0.5"
-																>
-																	{tech}
-																</span>
-															))}
-														</div>
-													</motion.div>
-												),
-										)}
-									</AnimatePresence>
-								</motion.div>
+							<div className="w-full mt-6">
+								<TechStackGrid />
 							</div>
 						</div>
 					</div>
