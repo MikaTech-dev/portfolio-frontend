@@ -70,6 +70,10 @@ const jsonLd = {
 	],
 };
 
+const isVercel = Boolean(
+	process.env.VERCEL || process.env.NEXT_PUBLIC_VERCEL_ENV,
+);
+
 export default function RootLayout({
 	children,
 }: {
@@ -82,8 +86,12 @@ export default function RootLayout({
 			</head>
 			<body className="antialiased bg-[#0a0514] text-[#e4e4e7] overflow-x-hidden">
 				<Providers>{children}</Providers>
-				<Analytics />
-				<SpeedInsights />
+				{isVercel && (
+					<>
+						<Analytics />
+						<SpeedInsights />
+					</>
+				)}
 			</body>
 		</html>
 	);
