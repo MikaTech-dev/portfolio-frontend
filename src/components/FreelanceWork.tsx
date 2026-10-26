@@ -24,6 +24,7 @@ const websites = [
 		image: klaroImage,
 		tags: ["Lead Engineer", "AI Pipeline"],
 		link: "https://klaro.ng",
+		imageClassName: "scale-90 sm:scale-95 group-hover:scale-105",
 	},
 ];
 
@@ -165,7 +166,10 @@ export default function FreelanceWork() {
 												: (site.image as { src?: string }).src || ""
 										}
 										alt={site.title}
-										className="w-full h-full object-contain scale-110 sm:scale-115 group-hover:scale-125 transition-transform duration-500 ease-out opacity-90 group-hover:opacity-100 drop-shadow-md"
+										className={`w-full h-full object-contain transition-transform duration-500 ease-out opacity-90 group-hover:opacity-100 drop-shadow-md ${
+											site.imageClassName ||
+											"scale-110 sm:scale-115 group-hover:scale-125"
+										}`}
 									/>
 
 									{/* Brief Tags inside the image container, bottom-left */}
