@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Copy, Check } from "lucide-react";
+import { Check, Copy } from "lucide-react";
 import { useState } from "react";
 import ContactForm from "./ContactForm";
 
@@ -51,6 +51,7 @@ export default function ContactSection() {
 						<div className="space-y-6 pt-2">
 							<div className="relative group/tooltip inline-block">
 								<button
+									type="button"
 									onClick={handleCopyEmail}
 									className="group flex items-center gap-3 px-6 py-3.5 rounded-full border border-white/5 bg-[#0a0510]/50 hover:bg-white/5 hover:border-white/10 transition-all duration-300 backdrop-blur-md cursor-pointer focus:outline-none"
 								>

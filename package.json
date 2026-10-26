@@ -1,38 +1,38 @@
 {
-  "name": "portfolio-frontend",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "build:cf": "opennextjs-cloudflare build",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
-  },
-  "dependencies": {
-    "@vercel/analytics": "^2.0.1",
-    "@vercel/speed-insights": "^2.0.0",
-    "framer-motion": "^14.6.0",
-    "lucide-react": "^1.61.0",
-    "next": "^16.4.3",
-    "notistack": "^3.0.2",
-    "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "torph": "^0.1.3"
-  },
-  "devDependencies": {
-    "@opennextjs/cloudflare": "^1.20.13",
-    "@tailwindcss/postcss": "^4.1.17",
-    "@types/node": "^22.13.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "autoprefixer": "^10.6.1",
-    "postcss": "^8.5.2",
-    "tailwindcss": "^4.1.17",
-    "typescript": "^5.7.3",
-    "wrangler": "^4.152.0"
-  }
+	"name": "portfolio-frontend",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"build:cf": "opennextjs-cloudflare build",
+		"deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+		"preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+		"cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
+	},
+	"dependencies": {
+		"@vercel/analytics": "^2.0.1",
+		"@vercel/speed-insights": "^2.0.0",
+		"framer-motion": "^14.6.0",
+		"lucide-react": "^1.61.0",
+		"next": "^16.4.3",
+		"notistack": "^3.0.2",
+		"react": "^19.3.1",
+		"react-dom": "^19.3.1",
+		"torph": "^0.1.3"
+	},
+	"devDependencies": {
+		"@opennextjs/cloudflare": "^1.20.13",
+		"@tailwindcss/postcss": "^4.1.17",
+		"@types/node": "^22.13.0",
+		"@types/react": "^19.0.0",
+		"@types/react-dom": "^19.0.0",
+		"autoprefixer": "^10.6.1",
+		"postcss": "^8.5.2",
+		"tailwindcss": "^4.1.17",
+		"typescript": "^5.7.3",
+		"wrangler": "^4.152.0"
+	}
 }

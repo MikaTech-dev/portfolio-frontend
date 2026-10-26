@@ -1,11 +1,11 @@
 "use client";
 
-import { Loader2, CheckCircle2, CornerDownLeft } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { submitContactForm } from "../services/api";
+import { AnimatePresence, motion } from "framer-motion";
+import { CheckCircle2, CornerDownLeft, Loader2 } from "lucide-react";
 import { useSnackbar } from "notistack";
+import { useEffect, useRef, useState } from "react";
 import { TextMorph } from "torph";
+import { submitContactForm } from "../services/api";
 
 export default function ContactForm() {
 	const { enqueueSnackbar } = useSnackbar();

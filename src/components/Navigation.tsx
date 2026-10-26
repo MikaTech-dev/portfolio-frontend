@@ -1,8 +1,8 @@
 "use client";
 
-import { Menu, User, Code, Briefcase, Mail, X } from "lucide-react";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { Briefcase, Code, Mail, Menu, User, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface NavigationProps {
 	activeSection: string;

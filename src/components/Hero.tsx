@@ -1,7 +1,7 @@
 "use client";
 
-import { Mail, ArrowDown, Check, Code } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowDown, Check, Code, Mail } from "lucide-react";
 import { useState } from "react";
 
 function Github({
