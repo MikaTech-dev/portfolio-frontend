@@ -132,7 +132,7 @@ export default function FreelanceWork() {
 				</div>
 
 				<motion.div
-					className="grid sm:grid-cols-2 max-w-3xl mx-auto gap-6 lg:gap-8"
+					className="grid sm:grid-cols-2 max-w-4xl lg:max-w-5xl mx-auto gap-6 lg:gap-8"
 					layout
 				>
 					<AnimatePresence mode="popLayout">
@@ -182,17 +182,17 @@ export default function FreelanceWork() {
 								</div>
 
 								{/* Content Area */}
-								<div className="flex flex-col grow p-5 space-y-2">
+								<div className="flex flex-col grow p-6 md:p-7 space-y-3">
 									<div className="flex justify-between items-center gap-2">
-										<h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-electric-violet transition-colors duration-300 tracking-tight">
+										<h3 className="text-xl font-semibold text-white group-hover:text-electric-violet transition-colors duration-300 tracking-tight">
 											{site.title}
 										</h3>
 										<ArrowRight
-											size={16}
+											size={18}
 											className="-rotate-45 text-slate-400 group-hover:text-electric-violet transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
 										/>
 									</div>
-									<p className="text-xs sm:text-sm text-slate-400 leading-relaxed line-clamp-3">
+									<p className="text-sm md:text-base text-slate-400/90 leading-relaxed">
 										{site.description}
 									</p>
 								</div>
