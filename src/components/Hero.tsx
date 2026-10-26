@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Check, Mail } from "lucide-react";
 import { useState } from "react";
-import TechStackGrid from "./TechStackGrid";
+import SpotlightBorder from "./SpotlightBorder";
 import Tooltip from "./Tooltip";
 
 function Github({
@@ -68,12 +68,12 @@ function Quora({
 		<svg
 			width={size}
 			height={size}
-			viewBox="0 0 448 512"
+			viewBox="0 0 24 24"
 			fill="currentColor"
 			className={className}
 		>
 			<title>Quora</title>
-			<path d="M440.5 386.7h-29.3c-1.5 13.5-10.5 30.8-33 30.8-20.5 0-35.3-14.2-49.5-35.8 44.2-34.2 74.7-87.5 74.7-153C403.5 111.2 306.8 32 205 32 105.3 32 7.3 111.7 7.3 228.7c0 134.1 131.3 221.6 249 189C276 451.3 302 480 351.5 480c81.8 0 90.8-75.3 89-93.3zM297 329.2C277.5 300 253.3 277 205.5 277c-30.5 0-54.3 10-69 22.8l12.2 24.3c6.2-3 13-4 19.8-4 35.5 0 53.7 30.8 69.2 61.3-10 3-20.7 4.2-32.7 4.2-75 0-107.5-53-107.5-156.7C97.5 124.5 130 71 205 71c76.2 0 108.7 53.5 108.7 157.7.1 41.8-5.4 75.6-16.7 100.5z" />
+			<path d="M12.738 18.701c-.831-1.635-1.805-3.287-3.708-3.287-.362 0-.727.061-1.059.209l-.646-1.289c.786-.678 2.058-1.214 3.693-1.214 2.544 0 3.851 1.229 4.888 2.792.613-1.335.904-3.14.904-5.375 0-5.582-1.744-8.447-5.822-8.447-4.018 0-5.757 2.865-5.757 8.447 0 5.553 1.739 8.389 5.757 8.389.64 0 1.22-.069 1.75-.225zm.996 1.947c-.881.237-1.817.366-2.743.366-5.352 0-10.59-4.269-10.59-10.478C.402 4.271 5.639 0 10.991 0c5.441 0 10.628 4.238 10.628 10.537 0 3.504-1.635 6.351-4.01 8.191.764 1.148 1.543 1.914 2.652 1.914 1.199 0 1.68-.915 1.77-1.649h1.557c.092.974-.402 5.007-4.766 5.007-2.652 0-4.047-1.528-5.096-3.328l.008-.024z" />
 		</svg>
 	);
 }
@@ -88,7 +88,8 @@ export default function Hero() {
 		setTimeout(() => setCopied(false), 2000);
 	};
 	const scrollToNext = () => {
-		const element = document.getElementById("backend");
+		const element =
+			document.getElementById("skills") || document.getElementById("backend");
 		if (element) {
 			element.scrollIntoView({ behavior: "smooth" });
 		}
@@ -166,18 +167,19 @@ export default function Hero() {
 								<button
 									type="button"
 									onClick={handleCopyEmail}
-									className="group relative flex items-center gap-3 px-5 py-3 rounded-full border border-white/5 bg-[#0a0510]/50 hover:bg-white/5 hover:border-white/10 transition-all duration-300 backdrop-blur-md cursor-pointer focus:outline-none"
+									className="group relative flex items-center gap-3 px-5 py-3 rounded-full border border-white/5 bg-[#0a0510]/50 hover:bg-white/5 hover:border-white/10 transition-all duration-300 backdrop-blur-md cursor-pointer focus:outline-none overflow-hidden"
 								>
+									<SpotlightBorder radius={80} />
 									{copied ? (
-										<Check size={18} className="text-green-500" />
+										<Check size={18} className="text-green-500 relative z-10" />
 									) : (
 										<Mail
 											size={18}
-											className="text-slate-400 group-hover:text-electric-violet transition-colors"
+											className="text-slate-400 group-hover:text-white transition-colors relative z-10"
 										/>
 									)}
 									<span
-										className={`text-sm tracking-wide font-medium transition-colors ${copied ? "text-green-400" : "text-slate-300 group-hover:text-white"}`}
+										className={`text-sm tracking-wide font-medium transition-colors relative z-10 ${copied ? "text-green-400" : "text-slate-300 group-hover:text-white"}`}
 									>
 										{copied ? "Copied!" : "Copy Email"}
 									</span>
@@ -193,13 +195,14 @@ export default function Hero() {
 									href="https://github.com/MikaTech-dev"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="group flex items-center gap-3 px-5 py-3 rounded-full border border-white/5 bg-[#0a0510]/50 hover:bg-white/5 hover:border-white/10 transition-all duration-300 backdrop-blur-md cursor-pointer focus:outline-none"
+									className="group relative flex items-center gap-3 px-5 py-3 rounded-full border border-white/5 bg-[#0a0510]/50 hover:bg-white/5 hover:border-white/10 transition-all duration-300 backdrop-blur-md cursor-pointer focus:outline-none overflow-hidden"
 								>
+									<SpotlightBorder radius={80} />
 									<Github
 										size={18}
-										className="text-slate-400 group-hover:text-white transition-colors"
+										className="text-slate-400 group-hover:text-white transition-colors relative z-10"
 									/>
-									<span className="text-sm tracking-wide font-medium text-slate-300 group-hover:text-white transition-colors">
+									<span className="text-sm tracking-wide font-medium text-slate-300 group-hover:text-white transition-colors relative z-10">
 										GitHub
 									</span>
 								</a>
@@ -207,13 +210,14 @@ export default function Hero() {
 									href="https://x.com/Rockarmy321"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="group flex items-center gap-3 px-5 py-3 rounded-full border border-white/5 bg-[#0a0510]/50 hover:bg-white/5 hover:border-white/10 transition-all duration-300 backdrop-blur-md cursor-pointer focus:outline-none"
+									className="group relative flex items-center gap-3 px-5 py-3 rounded-full border border-white/5 bg-[#0a0510]/50 hover:bg-white/5 hover:border-white/10 transition-all duration-300 backdrop-blur-md cursor-pointer focus:outline-none overflow-hidden"
 								>
+									<SpotlightBorder radius={80} />
 									<Twitter
 										size={18}
-										className="text-slate-400 group-hover:text-[#1DA1F2] transition-colors"
+										className="text-slate-400 group-hover:text-white transition-colors relative z-10"
 									/>
-									<span className="text-sm tracking-wide font-medium text-slate-300 group-hover:text-white transition-colors">
+									<span className="text-sm tracking-wide font-medium text-slate-300 group-hover:text-white transition-colors relative z-10">
 										Twitter
 									</span>
 								</a>
@@ -221,21 +225,18 @@ export default function Hero() {
 									href="https://www.quora.com/profile/Crescent-136"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="group relative flex items-center gap-3 px-5 py-3 rounded-full border border-white/5 bg-[#0a0510]/50 hover:bg-white/5 hover:border-white/10 transition-all duration-300 backdrop-blur-md cursor-pointer focus:outline-none"
+									className="group relative flex items-center gap-3 px-5 py-3 rounded-full border border-white/5 bg-[#0a0510]/50 hover:bg-white/5 hover:border-white/10 transition-all duration-300 backdrop-blur-md cursor-pointer focus:outline-none overflow-hidden"
 								>
+									<SpotlightBorder radius={80} />
 									<Quora
 										size={18}
-										className="text-slate-400 group-hover:text-[#B92B27] transition-colors"
+										className="text-slate-400 group-hover:text-white transition-colors relative z-10"
 									/>
-									<span className="text-sm tracking-wide font-medium text-slate-300 group-hover:text-white transition-colors">
+									<span className="text-sm tracking-wide font-medium text-slate-300 group-hover:text-white transition-colors relative z-10">
 										Quora
 									</span>
 									<Tooltip text="271k+ views helping people troubleshoot tech" />
 								</a>
-							</div>
-
-							<div className="w-full mt-6">
-								<TechStackGrid />
 							</div>
 						</div>
 					</div>

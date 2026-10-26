@@ -10,6 +10,7 @@ import KeepAndroidOpenPopup from "@/components/KeepAndroidOpenPopup";
 import Navigation from "@/components/Navigation";
 import PersonalProjects from "@/components/PersonalProjects";
 import StatusIndicator from "@/components/StatusIndicator";
+import TechStackGrid from "@/components/TechStackGrid";
 
 export default function Home() {
 	const [activeSection, setActiveSection] = useState("hero");
@@ -26,7 +27,7 @@ export default function Home() {
 			}
 
 			// Check sections from bottom to top order for overlapping cases
-			const sections = ["contact", "freelance", "backend", "hero"];
+			const sections = ["contact", "freelance", "backend", "skills", "hero"];
 			const scrollPosition = window.scrollY + window.innerHeight / 2;
 
 			for (const section of sections) {
@@ -59,6 +60,10 @@ export default function Home() {
 			<div id="hero">
 				<Hero />
 			</div>
+
+			<section id="skills" className="relative w-full py-16 md:py-20">
+				<TechStackGrid />
+			</section>
 
 			<div id="backend">
 				<PersonalProjects />

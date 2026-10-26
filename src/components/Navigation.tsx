@@ -1,8 +1,9 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Briefcase, Code, Mail, Menu, User, X } from "lucide-react";
+import { Briefcase, Code, Cpu, Mail, Menu, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import SpotlightBorder from "./SpotlightBorder";
 
 interface NavigationProps {
 	activeSection: string;
@@ -30,6 +31,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
 
 	const navItems = [
 		{ id: "hero", label: "About", icon: User },
+		{ id: "skills", label: "Skills", icon: Cpu },
 		{ id: "backend", label: "Projects", icon: Code },
 		{ id: "freelance", label: "Freelance", icon: Briefcase },
 		{ id: "contact", label: "Contact", icon: Mail },
@@ -47,10 +49,11 @@ export default function Navigation({ activeSection }: NavigationProps) {
 				<div
 					className={`
           relative flex items-center justify-between px-6 py-3 rounded-full 
-          transition-all duration-500 ease-in-out border border-white/10
+          transition-all duration-500 ease-in-out border border-white/10 overflow-hidden
           ${scrolled || mobileMenuOpen ? "bg-[#0f0919]/80 backdrop-blur-xl shadow-lg shadow-purple-900/10" : "bg-[#0f0919]/40 backdrop-blur-md"}
         `}
 				>
+					<SpotlightBorder radius={160} />
 					{/* Logo - Switched to Mono font for "Backend/Dev" feel */}
 					<button
 						type="button"
