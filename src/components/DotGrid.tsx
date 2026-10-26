@@ -309,6 +309,7 @@ export default function DotGrid({
 		let next = new Float32Array(0);
 		let wave = new Float32Array(0);
 		let energy = new Float32Array(0);
+		let distFromCenter = new Float32Array(0);
 		let instances = new Float32Array(0);
 		const pointer = {
 			x: 0,
@@ -335,6 +336,7 @@ export default function DotGrid({
 			const startY = (view.height - (rows * cell - spacing)) / 2 + size / 2;
 			const count = cols * rows;
 			rest = new Float32Array(count * 2);
+			distFromCenter = new Float32Array(count);
 			offset = new Float32Array(count * 2);
 			velocity = new Float32Array(count * 2);
 			force = new Float32Array(count * 2);
@@ -342,11 +344,17 @@ export default function DotGrid({
 			wave = new Float32Array(count * 4);
 			energy = new Float32Array(count);
 			instances = new Float32Array(count * 6);
+			const cx = view.width / 2;
+			const cy = view.height / 2;
 			for (let row = 0; row < rows; row++) {
 				for (let col = 0; col < cols; col++) {
-					const index = (row * cols + col) * 2;
-					rest[index] = startX + col * cell;
-					rest[index + 1] = startY + row * cell;
+					const i = row * cols + col;
+					const index = i * 2;
+					const rx = startX + col * cell;
+					const ry = startY + row * cell;
+					rest[index] = rx;
+					rest[index + 1] = ry;
+					distFromCenter[i] = Math.hypot(rx - cx, ry - cy);
 				}
 			}
 			Object.assign(grid, {
@@ -386,6 +394,13 @@ export default function DotGrid({
 		const step = (dt: number, now: number) => {
 			const s = settingsRef.current;
 			const motion = reduced ? 0 : 1;
+			const decay = 1 - Math.exp(-dt / 0.08);
+			pointer.vx -= pointer.vx * decay;
+			pointer.vy -= pointer.vy * decay;
+			const presenceTarget = s.mouseInteraction && pointer.inside ? 1 : 0;
+			pointer.presence +=
+				(presenceTarget - pointer.presence) * (1 - Math.exp(-dt / 0.2));
+
 			const zeta = 1 - 0.85 * Math.min(1, Math.max(0, s.bounce));
 			const omega = 4 / (zeta * Math.max(0.2, s.returnDuration));
 			const stiffness = omega * omega;
@@ -396,8 +411,6 @@ export default function DotGrid({
 				s.mouseInteraction && pointer.inside
 					? 6500 * Math.tanh(speed / 900) * s.strength * motion
 					: 0;
-			const dirX = speed > 0.001 ? pointer.vx / speed : 0;
-			const dirY = speed > 0.001 ? pointer.vy / speed : 0;
 			const width = grid.cell * 1.4;
 			const travel = 650;
 			const active = shocks.map((shock) => {
@@ -409,13 +422,34 @@ export default function DotGrid({
 					amplitude: power * s.shockStrength * grid.cell * 0.24 * motion,
 				};
 			});
+
+			// If no forces are active and particles are already resting, skip the heavy physics steps
+			if (drive === 0 && active.length === 0) {
+				let moving = false;
+				for (let i = 0; i < offset.length; i += 2) {
+					if (Math.abs(offset[i]) > 0.02 || Math.abs(velocity[i]) > 0.5) {
+						moving = true;
+						break;
+					}
+				}
+				if (!moving) {
+					for (let i = shocks.length - 1; i >= 0; i--) {
+						if (active[i].front > s.shockRadius + width * 3)
+							shocks.splice(i, 1);
+					}
+					return;
+				}
+			}
+
+			const dirX = speed > 0.001 ? pointer.vx / speed : 0;
+			const dirY = speed > 0.001 ? pointer.vy / speed : 0;
 			const coupling =
 				(Math.max(0, s.tension) * 900) ** 2 / (grid.cell * grid.cell);
 			const viscosity = Math.sqrt(coupling) * 0.06;
 			const limit =
 				Math.sqrt(stiffness + 8 * coupling) + damping + 8 * viscosity;
 			const steps = Math.min(
-				24,
+				6,
 				Math.max(1, Math.ceil(dt / Math.min(1 / 120, 1.2 / limit))),
 			);
 			const h = dt / steps;
@@ -548,12 +582,6 @@ export default function DotGrid({
 			for (let i = shocks.length - 1; i >= 0; i--) {
 				if (active[i].front > s.shockRadius + width * 3) shocks.splice(i, 1);
 			}
-			const decay = 1 - Math.exp(-dt / 0.08);
-			pointer.vx -= pointer.vx * decay;
-			pointer.vy -= pointer.vy * decay;
-			const presenceTarget = s.mouseInteraction && pointer.inside ? 1 : 0;
-			pointer.presence +=
-				(presenceTarget - pointer.presence) * (1 - Math.exp(-dt / 0.2));
 		};
 
 		const render = (now: number) => {
@@ -565,7 +593,7 @@ export default function DotGrid({
 					: introStart < 0
 						? 0
 						: (now - introStart) / 1000;
-			const introFront = introAge * grid.reach * 1.25;
+			const introFront = introAge * grid.reach * 1.4;
 			const introBand = grid.cell * 4;
 			for (let i = 0; i < grid.count; i++) {
 				const index = i * 2;
@@ -583,10 +611,7 @@ export default function DotGrid({
 				}
 				let scale = 1;
 				if (introStart !== null) {
-					const distance = Math.hypot(
-						rest[index] - grid.centerX,
-						rest[index + 1] - grid.centerY,
-					);
+					const distance = distFromCenter[i];
 					const appear = Math.min(
 						1,
 						Math.max(0, (introFront - distance) / introBand),
@@ -631,7 +656,7 @@ export default function DotGrid({
 		const settled = (now: number) => {
 			if (shocks.length) return false;
 			if (introStart !== null) {
-				if (introStart < 0 || (now - introStart) / 1000 < 1.6) return false;
+				if (introStart < 0 || (now - introStart) / 1000 < 0.9) return false;
 				introStart = null;
 			}
 			if (Math.abs(pointer.vx) + Math.abs(pointer.vy) > 1) return false;

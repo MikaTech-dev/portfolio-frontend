@@ -43,7 +43,7 @@ export default function InteractiveBackground() {
 			{webglSupported ? (
 				<DotGrid
 					dotSize={2.5}
-					gap={28}
+					gap={32}
 					baseColor="#3d1d68"
 					activeColor="#c084fc"
 					proximity={130}
@@ -52,6 +52,7 @@ export default function InteractiveBackground() {
 					shockStrength={4.5}
 					glow={0.6}
 					opacity={0.7}
+					dpr={1}
 					onUnavailable={() => setWebglSupported(false)}
 					className="absolute inset-0 pointer-events-none"
 				/>
