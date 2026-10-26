@@ -20,9 +20,9 @@ const websites = [
 	{
 		title: "Klaro.ng",
 		description:
-			"Lead engineer for the Next.js web application built to design team specifications. Developed the AI document extraction pipeline for Nigerian utility bills and invoices, and manage deployment across frontend and backend services using Cloudflare.",
+			"Built the frontend and backend for an AI platform that simplifies legal documents. Designed the document processing workflow and manage the CI/CD pipeline and deployment strategy.",
 		image: klaroImage,
-		tags: ["Lead Engineer", "AI Pipeline"],
+		tags: ["Legal", "SaaS", "AI"],
 		link: "https://klaro.ng",
 		imageClassName: "scale-90 sm:scale-95 group-hover:scale-105",
 	},
