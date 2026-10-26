@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
+import SpotlightBorder from "./SpotlightBorder";
 
 export default function BackToTop() {
 	const [isVisible, setIsVisible] = useState(false);
@@ -40,6 +41,7 @@ export default function BackToTop() {
 					className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#0a0510]/80 border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.5)] backdrop-blur-xl group hover:border-white/20 cursor-pointer focus:outline-none overflow-hidden"
 					aria-label="Back to top"
 				>
+					<SpotlightBorder radius={50} />
 					{/* Neon hover flare effect */}
 					<div className="absolute inset-0 bg-linear-to-tr from-electric-violet/0 via-electric-violet/30 to-royal-purple/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 

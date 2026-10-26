@@ -6,6 +6,7 @@ import { useSnackbar } from "notistack";
 import { useEffect, useRef, useState } from "react";
 import { TextMorph } from "torph";
 import { submitContactForm } from "../services/api";
+import SpotlightBorder from "./SpotlightBorder";
 
 export default function ContactForm() {
 	const { enqueueSnackbar } = useSnackbar();
@@ -102,7 +103,8 @@ export default function ContactForm() {
 		"block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 ml-1";
 
 	return (
-		<div className="w-full relative p-6 md:p-8 rounded-2xl border border-white/3 bg-[#0a0510]/80 backdrop-blur-md shadow-2xl overflow-hidden hover:border-white/10 transition-colors duration-300">
+		<div className="w-full relative p-6 md:p-8 rounded-2xl border border-white/5 bg-[#0a0510]/80 backdrop-blur-md shadow-2xl overflow-hidden hover:border-white/10 transition-colors duration-300">
+			<SpotlightBorder radius={300} />
 			<AnimatePresence mode="wait">
 				{status === "success" ? (
 					<motion.div
@@ -229,18 +231,21 @@ export default function ContactForm() {
 						<button
 							type="submit"
 							disabled={status === "submitting"}
-							className="w-full py-3.5 mt-4 rounded-xl font-medium text-base text-white bg-white/5 border border-white/5 hover:bg-white/10 hover:text-electric-violet hover:border-electric-violet/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group cursor-pointer"
+							className="group relative w-full py-3.5 mt-4 rounded-xl font-medium text-base text-white bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer overflow-hidden"
 						>
+							<SpotlightBorder radius={120} />
 							{status === "submitting" && (
-								<Loader2 size={20} className="animate-spin" />
+								<Loader2 size={20} className="animate-spin relative z-10" />
 							)}
-							<span ref={morphRef}>Send Message</span>
+							<span ref={morphRef} className="relative z-10">
+								Send Message
+							</span>
 							{status !== "submitting" && (
-								<div className="flex items-center gap-1.5 ml-2 transition-transform group-hover:translate-x-1">
-									<kbd className="flex items-center justify-center px-2 py-0.5 rounded-md bg-white/5 border border-white/10 font-sans text-xs font-semibold text-slate-400 group-hover:text-electric-violet group-hover:border-electric-violet/30 transition-colors shadow-sm tracking-wide">
+								<div className="flex items-center gap-1.5 ml-2 transition-transform group-hover:translate-x-1 relative z-10">
+									<kbd className="flex items-center justify-center px-2 py-0.5 rounded-md bg-white/5 border border-white/10 font-sans text-xs font-semibold text-slate-400 group-hover:text-white group-hover:border-white/20 transition-colors shadow-sm tracking-wide">
 										Ctrl
 									</kbd>
-									<kbd className="flex items-center justify-center px-2 py-0.5 rounded-md bg-white/5 border border-white/10 font-sans text-xs font-semibold text-slate-400 group-hover:text-electric-violet group-hover:border-electric-violet/30 transition-colors shadow-sm tracking-wide pl-1.5">
+									<kbd className="flex items-center justify-center px-2 py-0.5 rounded-md bg-white/5 border border-white/10 font-sans text-xs font-semibold text-slate-400 group-hover:text-white group-hover:border-white/20 transition-colors shadow-sm tracking-wide pl-1.5">
 										<CornerDownLeft size={14} className="mr-1" /> Enter
 									</kbd>
 								</div>

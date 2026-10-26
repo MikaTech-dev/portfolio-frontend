@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
 import ContactForm from "./ContactForm";
+import SpotlightBorder from "./SpotlightBorder";
+import Tooltip from "./Tooltip";
 
 export default function ContactSection() {
 	const [copied, setCopied] = useState(false);
@@ -49,22 +51,23 @@ export default function ContactSection() {
 						</div>
 
 						<div className="space-y-6 pt-2">
-							<div className="relative group/tooltip inline-block">
+							<div className="relative group inline-block">
 								<button
 									type="button"
 									onClick={handleCopyEmail}
-									className="group flex items-center gap-3 px-6 py-3.5 rounded-full border border-white/5 bg-[#0a0510]/50 hover:bg-white/5 hover:border-white/10 transition-all duration-300 backdrop-blur-md cursor-pointer focus:outline-none"
+									className="group relative flex items-center gap-3 px-6 py-3.5 rounded-full border border-white/5 bg-[#0a0510]/50 hover:bg-white/5 hover:border-white/10 transition-all duration-300 backdrop-blur-md cursor-pointer focus:outline-none overflow-hidden"
 								>
+									<SpotlightBorder radius={90} />
 									{copied ? (
-										<Check size={18} className="text-green-500" />
+										<Check size={18} className="text-green-500 relative z-10" />
 									) : (
 										<Copy
 											size={18}
-											className="text-slate-400 group-hover:text-electric-violet transition-colors"
+											className="text-slate-400 group-hover:text-white transition-colors relative z-10"
 										/>
 									)}
 									<span
-										className={`text-base tracking-wide font-medium transition-colors ${copied ? "text-green-400" : "text-slate-300 group-hover:text-white"}`}
+										className={`text-base tracking-wide font-medium transition-colors relative z-10 ${copied ? "text-green-400" : "text-slate-300 group-hover:text-white"}`}
 									>
 										{copied
 											? "kendoestech01@gmail.com copied!"
@@ -73,12 +76,7 @@ export default function ContactSection() {
 								</button>
 
 								{/* Tooltip */}
-								{!copied && (
-									<div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#0f0919] border border-white/10 text-slate-300 text-xs font-medium rounded-lg opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 shadow-xl whitespace-nowrap">
-										Click to copy
-										<div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#0f0919] border-r border-b border-white/10 rotate-45" />
-									</div>
-								)}
+								{!copied && <Tooltip text="Click to copy" />}
 							</div>
 						</div>
 					</motion.div>

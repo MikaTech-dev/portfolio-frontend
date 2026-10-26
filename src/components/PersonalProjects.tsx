@@ -281,8 +281,9 @@ export default function BackendProjects() {
 							type="button"
 							onClick={isAllVisible ? handleShowLess : handleLoadMore}
 							disabled={isLoading}
-							className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white font-medium transition-all duration-300 hover:bg-white/10 hover:border-electric-violet/30 hover:text-electric-violet cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+							className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/20 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden"
 						>
+							<SpotlightBorder radius={100} />
 							<span ref={morphRef} className="relative z-10 whitespace-nowrap">
 								Load More
 							</span>
