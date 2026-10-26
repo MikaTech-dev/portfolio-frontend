@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Smartphone, X } from "lucide-react";
+import { ArrowRight, Smartphone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function KeepAndroidOpenPopup() {
@@ -93,8 +93,12 @@ export default function KeepAndroidOpenPopup() {
 
 							<div className="w-px h-4 bg-white/20 ml-1 hidden sm:block"></div>
 
-							<span className="hidden sm:inline-flex text-[11px] uppercase tracking-[0.2em] font-bold text-electric-violet group-hover:text-white transition-colors ml-1 items-center gap-1">
-								Details &rarr;
+							<span className="hidden sm:inline-flex text-[11px] uppercase tracking-[0.2em] font-bold text-electric-violet group-hover:text-white transition-colors ml-1 items-center gap-1.5">
+								Details
+								<ArrowRight
+									size={13}
+									className="transition-transform group-hover:translate-x-0.5"
+								/>
 							</span>
 						</a>
 
