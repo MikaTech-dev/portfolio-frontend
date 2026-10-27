@@ -52,7 +52,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div className="relative min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 overflow-x-hidden">
+		<div className="relative min-h-screen bg-[#0a0514] overflow-x-hidden">
 			<InteractiveBackground />
 			<Navigation activeSection={activeSection} />
 			<StatusIndicator />
@@ -61,7 +61,10 @@ export default function Home() {
 				<Hero />
 			</div>
 
-			<section id="skills" className="relative w-full py-16 md:py-20">
+			<section
+				id="skills"
+				className="relative w-full pt-8 pb-16 md:pt-10 md:pb-20"
+			>
 				<TechStackGrid />
 			</section>
 

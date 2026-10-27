@@ -118,7 +118,7 @@ export default function Hero() {
 	};
 
 	return (
-		<section className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-20 overflow-hidden">
+		<section className="relative min-h-svh min-h-screen flex flex-col justify-center px-6 pt-24 pb-20 overflow-x-clip overflow-y-visible">
 			<div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-royal-purple/20 rounded-full blur-[120px] pointer-events-none" />
 			<div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-electric-violet/10 rounded-full blur-[100px] pointer-events-none" />
 
