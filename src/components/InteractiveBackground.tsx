@@ -19,7 +19,7 @@ export default function InteractiveBackground() {
 	}, []);
 
 	return (
-		<div className="fixed inset-0 z-0 pointer-events-none bg-[#0a0514]">
+		<div className="fixed inset-x-0 top-0 -bottom-36 z-0 pointer-events-none bg-[#0a0514]">
 			{/* Static Vignette / Corner Accents */}
 			<div
 				className="absolute top-0 right-0 w-[800px] h-[800px] opacity-40 pointer-events-none"

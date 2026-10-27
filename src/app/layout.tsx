@@ -81,7 +81,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={`${spaceGrotesk.variable} scroll-smooth`}>
+		<html
+			lang="en"
+			className={`${spaceGrotesk.variable} scroll-smooth bg-[#0a0514]`}
+		>
 			<head>
 				<script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
 			</head>
