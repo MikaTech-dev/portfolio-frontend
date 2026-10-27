@@ -52,7 +52,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div className="relative min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 overflow-x-hidden">
+		<div className="relative min-h-screen bg-[#0a0514] overflow-x-hidden">
 			<InteractiveBackground />
 			<Navigation activeSection={activeSection} />
 			<StatusIndicator />
