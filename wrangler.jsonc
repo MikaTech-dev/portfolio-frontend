@@ -2,7 +2,10 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "portfolio-frontend",
 	"compatibility_date": "2026-09-18",
-	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
 	"main": ".open-next/worker.js",
 	"assets": {
 		"directory": ".open-next/assets",
@@ -21,6 +24,9 @@
 			"service": "portfolio-frontend"
 		}
 	],
+	"build": {
+		"command": "npm run build:cf"
+	},
 	"previews": {
 		"vars": {
 			"API_URL": "https://mail.mikatech.top",
