@@ -61,7 +61,10 @@ export default function Home() {
 				<Hero />
 			</div>
 
-			<section id="skills" className="relative w-full py-16 md:py-20">
+			<section
+				id="skills"
+				className="relative w-full pt-8 pb-16 md:pt-10 md:pb-20"
+			>
 				<TechStackGrid />
 			</section>
 
